@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" prefHeight="700.0" prefWidth="1360.0" stylesheets="@style/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bussystem.controller.DashboardFormAdminController">
+   <children>
+      <Pane prefHeight="700.0" prefWidth="230.0" styleClass="mainpane" stylesheets="@style/Style.css">
+         <children>
+            <JFXButton layoutX="54.0" layoutY="279.0" onAction="#customeronAction" prefHeight="34.0" prefWidth="180.0" styleClass="Btn" text="Customer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="54.0" layoutY="327.0" onAction="#busonaction" prefHeight="36.0" prefWidth="178.0" styleClass="Btn" text="Bus" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="44.0" layoutY="592.0" onAction="#reportonaction" prefHeight="42.0" prefWidth="198.0" styleClass="Btn" text="Report" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="53.0" layoutY="378.0" onAction="#viewseatonaction" prefHeight="34.0" prefWidth="177.0" styleClass="Btn" text="View Seat" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="45.0" layoutY="537.0" onAction="#employeeonaction" prefHeight="42.0" prefWidth="182.0" styleClass="Btn" text="Employee" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="44.0" layoutY="483.0" onAction="#servicecenteronaction" prefHeight="35.0" prefWidth="175.0" styleClass="Btn" text="Service Center" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="51.0" layoutY="434.0" onAction="#driveronaction" prefHeight="33.0" prefWidth="182.0" styleClass="Btn" text="Driver" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="45.0" layoutY="641.0" onAction="#logoutonaction" prefHeight="43.0" prefWidth="186.0" styleClass="Btn" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="52.0" layoutY="232.0" onAction="#dashonaction" prefHeight="32.0" prefWidth="180.0" styleClass="Btn" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="28.0" fitWidth="39.0" layoutX="19.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/rem.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="18.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/1c.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="46.0" layoutX="8.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/ib.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="26.0" layoutX="17.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/si.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="116.0" layoutX="74.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/bu.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="18.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/d.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="11.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/sc.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="15.0" layoutY="587.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/re.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="18.0" layoutY="649.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/log.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="12.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/em.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="46.0" layoutY="183.0" onAction="#schudelOnAction" prefHeight="32.0" prefWidth="180.0" styleClass="Btn" text="Schudel" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="48.0" layoutY="140.0" onAction="#seatOnAction" prefHeight="32.0" prefWidth="180.0" styleClass="Btn" text="Seat" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane fx:id="tatoo" layoutX="230.0" layoutY="59.0" prefHeight="641.0" prefWidth="1130.0" styleClass="Dashsuppane1" stylesheets="@style/Style.css">
+         <children>
+            <LineChart layoutX="7.0" layoutY="255.0" prefHeight="358.0" prefWidth="1101.0" stylesheets="@style/Style.css">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Pane layoutX="197.0" layoutY="26.0" opacity="0.38" prefHeight="208.0" prefWidth="736.0" style="-fx-background-radius: 10;" styleClass="dashlpane" stylesheets="@style/Style.css">
+               <children>
+                  <Pane layoutX="29.0" layoutY="17.0" prefHeight="179.0" prefWidth="186.0" style="-fx-background-radius: 10; -fx-background-color: #F88158;">
+                     <children>
+                        <Label layoutX="52.0" layoutY="24.0" prefHeight="30.0" prefWidth="95.0" text="Customer">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="Txtcus" layoutX="58.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="69.5278787612915">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="266.0" layoutY="17.0" prefHeight="179.0" prefWidth="186.0" style="-fx-background-radius: 10; -fx-background-color: #F88158;">
+                     <children>
+                        <Label layoutX="62.0" layoutY="23.0" prefHeight="24.0" prefWidth="62.0" text="Driver">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="TxtDriverid" layoutX="58.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="69.5278787612915">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="511.0" layoutY="17.0" prefHeight="179.0" prefWidth="186.0" style="-fx-background-radius: 10; -fx-background-color: #F88158;">
+                     <children>
+                        <Label layoutX="70.0" layoutY="22.0" prefHeight="27.0" prefWidth="46.0" text="Bus">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="Txtbus" layoutX="58.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="69.5278787612915">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children></Pane>
+         </children></Pane>
+      <Pane layoutX="229.0" layoutY="-4.0" prefHeight="63.0" prefWidth="1130.0" styleClass="shortpane" stylesheets="@style/Style.css">
+         <children>
+            <Label fx:id="dateid" layoutX="21.0" layoutY="2.0" prefHeight="63.0" prefWidth="230.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <TextField fx:id="Txttimes" layoutX="851.0" layoutY="11.0" prefHeight="50.0" prefWidth="182.0">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </TextField>
+         </children></Pane>
+   </children>
+</AnchorPane>

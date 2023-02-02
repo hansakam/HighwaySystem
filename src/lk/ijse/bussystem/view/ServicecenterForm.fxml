@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="641.0" prefWidth="1130.0" styleClass="servicecenter" stylesheets="@style/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bussystem.controller.ServicecenterFormController">
+   <children>
+      <Label layoutX="58.0" layoutY="38.0" styleClass="servicecenterlable" stylesheets="@style/Style.css" text="ServiceCenter" />
+      <Label layoutX="57.0" layoutY="147.0" styleClass="Serviceceterlable2" stylesheets="@style/Style.css" text="Service Id   :" />
+      <Label layoutX="383.0" layoutY="149.0" styleClass="Serviceceterlable2" stylesheets="@style/Style.css" text="Name   :" />
+      <Label layoutX="699.0" layoutY="149.0" styleClass="Serviceceterlable2" stylesheets="@style/Style.css" text="Location   :" />
+      <Label layoutX="61.0" layoutY="243.0" styleClass="Serviceceterlable2" stylesheets="@style/Style.css" text="Contact   :" />
+      <Label layoutX="383.0" layoutY="245.0" styleClass="Serviceceterlable2" stylesheets="@style/Style.css" text="Task Total Cost   :" />
+      <JFXTextField fx:id="Txtsearch" layoutX="726.0" layoutY="67.0" onAction="#Btnonsearch" prefHeight="25.0" prefWidth="319.0" promptText="Search Sid" stylesheets="@style/Style.css">
+         <styleClass>
+            <String fx:value="Serviceceterlable3" />
+            <String fx:value="Servicecetersearch" />
+         </styleClass>
+      </JFXTextField>
+      <JFXTextField fx:id="Txtid" layoutX="154.0" layoutY="148.0" prefHeight="25.0" prefWidth="207.0" styleClass="servicecentertextfield" stylesheets="@style/Style.css" />
+      <JFXTextField fx:id="Txttask" layoutX="524.0" layoutY="245.0" prefHeight="25.0" prefWidth="175.0" styleClass="servicecentertextfield" stylesheets="@style/Style.css" />
+      <JFXButton layoutX="873.0" layoutY="353.0" onAction="#Btnadd" style="-fx-background-radius: 10;" styleClass="Serviceceteraddbtn" stylesheets="@style/Style.css" text="Add to service" />
+      <JFXButton layoutX="485.0" layoutY="359.0" onAction="#Btnremove" style="-fx-background-radius: 10;" styleClass="servicecenterremove" stylesheets="@style/Style.css" text="Remove " />
+      <Label layoutX="726.0" layoutY="245.0" styleClass="Serviceceterlable2" stylesheets="@style/Style.css" text="Date   :" />
+      <Label fx:id="lbldate" layoutX="789.0" layoutY="241.0" prefHeight="34.0" prefWidth="168.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <TableView fx:id="TBLServicecenter" layoutX="9.0" layoutY="478.0" prefHeight="163.0" prefWidth="1062.0">
+        <columns>
+          <TableColumn fx:id="Tblserviceid" prefWidth="105.0" text="Service Id" />
+          <TableColumn fx:id="Tblname" prefWidth="191.0" text="Name" />
+            <TableColumn fx:id="Tbllocation" prefWidth="172.0" text="Location" />
+            <TableColumn fx:id="Tblcontact" minWidth="7.0" prefWidth="214.0" text="Contact" />
+            <TableColumn fx:id="Tbltotalcost" prefWidth="142.0" text="Task Total Cost" />
+            <TableColumn fx:id="Tbldate" prefWidth="114.0" text="Date" />
+            <TableColumn fx:id="Tblbusid" prefWidth="114.0" text="Bus Id" />
+        </columns>
+      </TableView>
+      <Label layoutX="61.0" layoutY="321.0" styleClass="Serviceceterlable2" stylesheets="@style/Style.css" text="Bus Id   :" />
+      <Label fx:id="lblname" layoutX="452.0" layoutY="145.0" prefHeight="34.0" prefWidth="175.0" text="  Marco Service Center" textFill="#a130ab">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="combid" layoutX="136.0" layoutY="322.0" onAction="#combobox" prefHeight="25.0" prefWidth="207.0" />
+      <Label fx:id="lblcontact" layoutX="142.0" layoutY="239.0" prefHeight="34.0" prefWidth="175.0" text="  076 1923 491">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbllocation" layoutX="798.0" layoutY="145.0" prefHeight="34.0" prefWidth="175.0" text="   Wakwella Road,Galle">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="688.0" layoutY="359.0" onAction="#Btnupdate" style="-fx-background-radius: 10;" styleClass="servicecenterremove" stylesheets="@style/Style.css" text="Update" />
+   </children>
+</AnchorPane>

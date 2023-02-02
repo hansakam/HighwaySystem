@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Bus_Tickt" pageWidth="288" pageHeight="792" columnWidth="248" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="ecb9dd60-3bc5-4d8e-8c52-9f959182245f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Bus_System.jrdax"/>
+	<property name="com.jaspersoft.studio.unit." value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="inch"/>
+	<parameter name="pId" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT c.Name,C.Customer_Id,P.`From`,P.`To`,P.Payment_Id,P.Bus_Id,PD.booking_seat_id,B.Bus_Number ,P.amount FROM payment_details PD INNER JOIN payment p on PD.Payment_Id = p.Payment_Id INNER JOIN CUSTOMER C on p.Customer_Id = C.Customer_Id INNER JOIN BUS B on p.Bus_Id = B.Bus_Id 
+where p.Payment_Id=$P{pId}]]>
+	</queryString>
+	<field name="Name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Name"/>
+		<property name="com.jaspersoft.studio.field.label" value="Name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="Customer_Id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Customer_Id"/>
+		<property name="com.jaspersoft.studio.field.label" value="Customer_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="From" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="From"/>
+		<property name="com.jaspersoft.studio.field.label" value="From"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payment"/>
+	</field>
+	<field name="To" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="To"/>
+		<property name="com.jaspersoft.studio.field.label" value="To"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payment"/>
+	</field>
+	<field name="Payment_Id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Payment_Id"/>
+		<property name="com.jaspersoft.studio.field.label" value="Payment_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payment"/>
+	</field>
+	<field name="Bus_Id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Bus_Id"/>
+		<property name="com.jaspersoft.studio.field.label" value="Bus_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payment"/>
+	</field>
+	<field name="booking_seat_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="booking_seat_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="booking_seat_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payment_details"/>
+	</field>
+	<field name="Bus_Number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Bus_Number"/>
+		<property name="com.jaspersoft.studio.field.label" value="Bus_Number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bus"/>
+	</field>
+	<field name="amount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payment"/>
+	</field>
+	<group name="Payment_Id">
+		<groupExpression><![CDATA[$F{Payment_Id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="196" height="37" uuid="943f27fd-e92c-405c-9685-04d5430a6d27"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Britannic Bold" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MACO EXPRESS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="0" width="122" height="12" uuid="d6b0a769-60b6-415a-8c00-49faa09776f4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light" size="9"/>
+				</textElement>
+				<text><![CDATA[No 217 Gall Road Dewata,Galle ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="10" width="100" height="15" uuid="10688e72-a1e1-4c22-a3fc-3302b8714935"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<text><![CDATA[ +94 77-97-97-974]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-1" y="30" width="250" height="1" uuid="f72cfdb0-8ea5-4e2a-bd9d-5aa34f2c8a24"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="95" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="17" width="100" height="15" uuid="5fc326ef-3563-4a2e-a011-618695e9e6f2"/>
+				<textFieldExpression><![CDATA[$F{Bus_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="17" width="100" height="13" uuid="32a4120e-a044-4ac8-8f31-e9cf4c266176"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Bus_Number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="37" width="100" height="15" uuid="40bac1fa-a588-4a67-8b11-36844733ca5b"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{Customer_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="40" width="100" height="16" uuid="84dda0dc-fb62-4b5f-9e6d-051d13882256"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="17" uuid="84c99dba-334c-48d3-82f0-115ed28b2a86"/>
+				<textFieldExpression><![CDATA[$F{Payment_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="56" width="100" height="30" uuid="750f4ffa-dd69-4a30-ae49-9ee334f0392d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{To}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="100" height="30" uuid="22444ec5-da3b-47b3-96b4-bd9008232f7f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{From}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="79" y="0" width="100" height="16" uuid="11134475-bd16-499d-98b3-58060ddd6de0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5041c2e7-e977-4f22-b5c9-d30e0f684fd2"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{booking_seat_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="0" width="100" height="14" uuid="13d14f23-b345-4fc0-88d0-5c617631423e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="169" y="-1" width="80" height="15" uuid="6628841d-207a-4d2a-977d-d5381aadc76a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="d168c678-a2dc-467b-b965-dc22c58ab25a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light" isBold="false"/>
+				</textElement>
+				<text><![CDATA[THANK YOU FOR YOUR PURCHASE]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="25" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="16" width="250" height="1" uuid="a61e1554-1d00-4092-93c8-c4d24bb77ee9"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="40" y="0" width="40" height="14" uuid="0d55bed0-933b-4f36-92f0-5ebe8913f0a3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri Light" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="83" y="0" width="100" height="15" uuid="77437528-677b-4037-b071-72e589313cb5"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

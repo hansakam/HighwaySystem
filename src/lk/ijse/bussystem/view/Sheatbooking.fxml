@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="641.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bussystem.controller.SheatbookingController">
+   <children>
+      <Label layoutX="35.0" layoutY="24.0" styleClass="seatlableh" stylesheets="@style/Style.css" text="Today Booking" />
+      <JFXComboBox fx:id="cmdbusid" layoutX="57.0" layoutY="110.0" onAction="#cmbbusidonaction" prefHeight="41.0" prefWidth="197.0" promptText="BusId" />
+      <ScrollPane layoutX="47.0" layoutY="166.0" prefHeight="442.0" prefWidth="812.0">
+         <content>
+            <VBox fx:id="vBox" prefHeight="447.0" prefWidth="796.0">
+               <children>
+                  <Pane prefHeight="50.0" prefWidth="796.0" />
+               </children>
+            </VBox>
+         </content></ScrollPane>
+      <Label layoutX="863.0" layoutY="338.0" prefHeight="20.0" prefWidth="126.0" text="Total">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbltotal" layoutX="873.0" layoutY="360.0" prefHeight="20.0" prefWidth="126.0" text="00.00" />
+      <JFXTextField fx:id="balance" alignment="CENTER" layoutX="873.0" layoutY="395.0" onKeyReleased="#givenBalanceOnkeyReleased" promptText="Given Blance" />
+      <Label layoutX="878.0" layoutY="431.0" prefHeight="20.0" prefWidth="96.0" text="blance  :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblblance" layoutX="886.0" layoutY="455.0" prefHeight="20.0" prefWidth="126.0" text="00.00" />
+      <JFXButton fx:id="btn" layoutX="876.0" layoutY="491.0" onAction="#Btnpay" prefHeight="54.0" prefWidth="212.0" style="-fx-background-radius: 10;" styleClass="seatexit" stylesheets="@style/Style.css" text="Pay" />
+      <JFXButton layoutX="876.0" layoutY="554.0" onAction="#Btnbooking" prefHeight="54.0" prefWidth="212.0" style="-fx-background-radius: 10;" styleClass="seatexit" stylesheets="@style/Style.css" text="All booking Cancell" />
+      <JFXComboBox fx:id="cmbcusid" layoutX="582.0" layoutY="118.0" onAction="#cmbcusidonaction" prefHeight="34.0" prefWidth="197.0" promptText="Customer Id" />
+      <Label layoutX="811.0" layoutY="133.0" prefHeight="20.0" prefWidth="115.0" text="Customer Name :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblcusname" layoutX="936.0" layoutY="131.0" prefHeight="25.0" prefWidth="135.0" text=" " />
+      <Label layoutX="285.0" layoutY="131.0" prefHeight="25.0" prefWidth="96.0" text="BusNumber  :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblbusnumber" layoutX="368.0" layoutY="131.0" prefHeight="25.0" prefWidth="185.0" text=" " />
+      <JFXTextField fx:id="lblFrom" layoutX="873.0" layoutY="240.0" prefHeight="26.0" prefWidth="197.0" promptText="FROM" />
+      <JFXTextField fx:id="lblTo" layoutX="873.0" layoutY="205.0" prefHeight="26.0" prefWidth="197.0" promptText="TO" />
+      <JFXTimePicker fx:id="time" layoutX="869.0" layoutY="166.0" prefHeight="26.0" prefWidth="197.0" />
+      <JFXButton fx:id="btn1" layoutX="877.0" layoutY="287.0" onAction="#btnSearch" prefHeight="41.0" prefWidth="197.0" style="-fx-background-radius: 10;" styleClass="seatexit" stylesheets="@style/Style.css" text="Search" />
+   </children>
+</AnchorPane>

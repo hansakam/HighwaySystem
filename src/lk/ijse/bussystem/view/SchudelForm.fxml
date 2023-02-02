@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="641.0" prefWidth="1130.0" styleClass="employee" stylesheets="@style/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bussystem.controller.ScheduleController">
+   <children>
+      <Label layoutX="54.0" layoutY="204.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="From   :" />
+      <Label layoutX="446.0" layoutY="194.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="To   :" />
+      <Label layoutX="90.0" layoutY="309.0" prefHeight="26.0" prefWidth="88.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Time      :" />
+      <Label layoutX="446.0" layoutY="309.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Bus   :" />
+      <Label layoutX="765.0" layoutY="309.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Bus Id" />
+      <JFXTextField fx:id="txtTo" layoutX="514.0" layoutY="195.0" onKeyTyped="#Txtename" prefHeight="25.0" prefWidth="206.0" stylesheets="@style/Style.css" visible="false" />
+      <JFXTextField fx:id="txtSearch" layoutX="801.0" layoutY="81.0" onAction="#Btnsearch" onKeyReleased="#searchID" prefHeight="25.0" prefWidth="252.0" promptText="Search employee Id" styleClass="employeesearch" stylesheets="@style/Style.css" />
+      <Label layoutX="69.0" layoutY="49.0" styleClass="employeelablett" stylesheets="@style/Style.css" text="Schedule" />
+      <JFXButton layoutX="901.0" layoutY="388.0" onAction="#BtnAddonaction" style="-fx-background-radius: 10;" stylesheets="@style/Style.css" text="Add">
+         <styleClass>
+            <String fx:value="employeeaddex" />
+            <String fx:value="employeeaddex" />
+            <String />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="628.0" layoutY="388.0" onAction="#BtnupdateOnaction" style="-fx-background-radius: 10;" stylesheets="@style/Style.css" text="Update">
+         <styleClass>
+            <String fx:value="employeeaddex" />
+            <String fx:value="employeeaddex" />
+            <String />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="374.0" layoutY="388.0" onAction="#BtndeleteonAction" style="-fx-background-radius: 10;" styleClass="employeeremove" stylesheets="@style/Style.css" text="Delete" />
+      <JFXComboBox fx:id="busId" layoutX="862.0" layoutY="310.0" onAction="#busIdOnAction" prefHeight="25.0" prefWidth="206.0" unFocusColor="#655858" />
+      <TableView fx:id="tblSchedule" layoutX="175.0" layoutY="466.0" prefHeight="113.0" prefWidth="803.0">
+        <columns>
+          <TableColumn fx:id="tblBusId" prefWidth="164.0" text="Bus ID" />
+          <TableColumn fx:id="tblFrom" prefWidth="204.0" text="From" />
+            <TableColumn fx:id="tblTo" prefWidth="224.0" text="To" />
+            <TableColumn fx:id="tblTime" prefWidth="208.0" text="Time" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblEid" layoutX="189.0" layoutY="232.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+      <Label fx:id="lblName" layoutX="511.0" layoutY="232.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+      <Label fx:id="lblEmail" layoutX="189.0" layoutY="346.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+      <Label fx:id="lblAddress" layoutX="861.0" layoutY="232.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+      <Label fx:id="txtBusNumber" layoutX="514.0" layoutY="309.0" prefHeight="20.0" prefWidth="216.0" styleClass="emplyeelable" stylesheets="@style/Style.css" />
+      <JFXTimePicker fx:id="timeSchedule" layoutX="175.0" layoutY="308.0" prefHeight="26.0" prefWidth="206.0" />
+      <JFXTextField fx:id="txtFrom" layoutX="175.0" layoutY="201.0" onKeyTyped="#Txtename" prefHeight="25.0" prefWidth="206.0" stylesheets="@style/Style.css" visible="false" />
+      <JFXComboBox fx:id="cmbFrom" layoutX="175.0" layoutY="200.0" prefHeight="25.0" prefWidth="206.0" unFocusColor="#655858" />
+      <JFXComboBox fx:id="cmbTo" layoutX="514.0" layoutY="194.0" prefHeight="25.0" prefWidth="206.0" unFocusColor="#655858" />
+      <JFXCheckBox fx:id="CheckFrom" layoutX="381.0" layoutY="205.0" onAction="#checkBoxFromOnAction" text=" " />
+      <JFXCheckBox fx:id="checkBoxTo" layoutX="731.0" layoutY="205.0" onAction="#checkBoxToOnAction" text=" " />
+   </children>
+</AnchorPane>
