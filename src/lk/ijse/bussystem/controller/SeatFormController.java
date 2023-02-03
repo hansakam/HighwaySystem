@@ -10,7 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import lk.ijse.bussystem.model.SeatModel;
+import lk.ijse.bussystem.dao.custom.SeatDAO;
+import lk.ijse.bussystem.dao.custom.impl.SeatDAOImpl;
 import lk.ijse.bussystem.view.tm.SeatTm;
 
 import java.net.URL;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class SeatFormController implements Initializable {
 
+    SeatDAO seatDAO = new SeatDAOImpl();
 
     public JFXTextField txtPrice;
     public TableView tblView;
@@ -30,7 +32,8 @@ public class SeatFormController implements Initializable {
 
     public void TxtDid(KeyEvent keyEvent) {
         try {
-            ResultSet set=SeatModel.getData(txtId.getText());
+
+            ResultSet set= seatDAO.getData(txtId.getText());
             if (set.next()){
                 txtPrice.setText(set.getString(1));
             }
@@ -41,7 +44,7 @@ public class SeatFormController implements Initializable {
 
     public void Btnadd(ActionEvent actionEvent) {
         try {
-            if (SeatModel.setSeat(txtPrice.getText(), nextId())) {
+            if (seatDAO.setSeat(txtPrice.getText(), nextId())) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Ok").show();
                 txtPrice.clear();
                 setTableData();
@@ -51,11 +54,11 @@ public class SeatFormController implements Initializable {
         }
 
     }
-
+//genarate id from get id
     private Object nextId() {
         String id=null;
         try {
-            ResultSet set = SeatModel.getId();
+            ResultSet set = seatDAO.getId();
             while (set.next()){
                 id=set.getString(1);
             }
@@ -75,7 +78,7 @@ public class SeatFormController implements Initializable {
 
     public void Btnupdate(ActionEvent actionEvent) {
         try {
-            if (SeatModel.updateSeat(txtPrice.getText(),txtId.getText())){
+            if (seatDAO.updateSeat(txtPrice.getText(),txtId.getText())){
                 new Alert(Alert.AlertType.CONFIRMATION,"Ok").show();
                 txtId.clear();
                 txtPrice.clear();
@@ -100,7 +103,7 @@ public class SeatFormController implements Initializable {
     private void setTableData() {
         tms.clear();
         try {
-            ResultSet set = SeatModel.getAll();
+            ResultSet set = seatDAO.getAll();
             while (set.next()) {
                 SeatTm tm = new SeatTm();
                 tm.setId(set.getString(1));

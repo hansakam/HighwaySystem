@@ -15,13 +15,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import lk.ijse.bussystem.bo.custom.ServiceCenterBO;
+import lk.ijse.bussystem.bo.custom.impl.ServiceCenterBOImpl;
+import lk.ijse.bussystem.dao.custom.ServiceCenterDAO;
 import lk.ijse.bussystem.db.DBConnection;
-import lk.ijse.bussystem.model.CustomerModel;
-import lk.ijse.bussystem.model.ServicecenterModel;
-import lk.ijse.bussystem.tm.CustomerTM;
+import lk.ijse.bussystem.dao.custom.impl.ServicecenterDAOImpl;
 import lk.ijse.bussystem.tm.ServiceCenterTM;
-import lk.ijse.bussystem.to.Customer;
-import lk.ijse.bussystem.to.ServiceCenter;
+import lk.ijse.bussystem.DTO.ServiceCenterDTO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +33,10 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ServicecenterFormController implements Initializable {
+
+    ServiceCenterBO serviceCenterBO = new ServiceCenterBOImpl();
+
+
     public JFXTextField Txtsearch;
     public JFXTextField Txtid;
     public JFXTextField Txtcontact;
@@ -61,14 +65,14 @@ ObservableList<ServiceCenterTM>ServicecenterTMS=FXCollections.observableArrayLis
 
         String id = Txtsearch.getText();
 
-            ServiceCenter serviceCenter = ServicecenterModel.search(id);
+            ServiceCenterDTO serviceCenter =serviceCenterBO.SearchServiceCenter(id);
             if (serviceCenter != null) {
 
                 fillData(serviceCenter);
             }
 
     }
-    public  void fillData(ServiceCenter serviceCenter){
+    public  void fillData(ServiceCenterDTO serviceCenter){
 
         Txtid.setText(serviceCenter.getSid());
         lblname.setText(serviceCenter.getName());
@@ -81,7 +85,7 @@ ObservableList<ServiceCenterTM>ServicecenterTMS=FXCollections.observableArrayLis
     }
 
     public void Btnremove(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        boolean isdelete = ServicecenterModel.delete(Txtid.getText());
+        boolean isdelete =serviceCenterBO.deleteServiceCenter(Txtid.getText());
 
         if(isdelete){
             new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successful...!").show();
@@ -109,9 +113,9 @@ ObservableList<ServiceCenterTM>ServicecenterTMS=FXCollections.observableArrayLis
         String date=lbldate.getText();
         String bid= String.valueOf(combid.getValue());
 
-        ServiceCenter serviceCenter = new ServiceCenter(id,name,location,contact,cost,date,bid);
+        ServiceCenterDTO serviceCenter = new ServiceCenterDTO(id,name,location,contact,cost,date,bid);
 
-        boolean isadd = ServicecenterModel.Save(serviceCenter);
+        boolean isadd = serviceCenterBO.SaveServiceCenter(serviceCenter);
         if (isadd) {
             new Alert(Alert.AlertType.CONFIRMATION, "Added  SUCCESS!").show();
         } else {
@@ -164,7 +168,7 @@ ObservableList<ServiceCenterTM>ServicecenterTMS=FXCollections.observableArrayLis
     private void setTable() {
         TBLServicecenter.getItems().clear();
         try {
-            ResultSet set =ServicecenterModel.getAll();
+            ResultSet set =serviceCenterBO.getAllServiceCenter();
             while (set.next()){
                 ServicecenterTMS.add(new ServiceCenterTM(
                         set.getString(1),
@@ -197,12 +201,12 @@ ObservableList<ServiceCenterTM>ServicecenterTMS=FXCollections.observableArrayLis
 
 
 
-        ServiceCenter serviceCenter=new ServiceCenter(id,name,location,contact,cost,date,bid);
+        ServiceCenterDTO serviceCenter=new ServiceCenterDTO(id,name,location,contact,cost,date,bid);
 
 
 
         try {
-            boolean isupdate = ServicecenterModel.Update(serviceCenter);
+            boolean isupdate =serviceCenterBO.UpdateServiceCenter(serviceCenter);
             if (isupdate){
 
                 new Alert(Alert.AlertType.CONFIRMATION,"Update success").show();

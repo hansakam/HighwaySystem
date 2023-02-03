@@ -1,0 +1,494 @@
+
+.mainpane {
+    /*-fx-background-color: #1A2980;*/
+    /*-fx-background-color: -webkit-linear-gradient(to right, #26D0CE, #1A2980);*/
+    /*-fx-background-color: linear-gradient(to right, #26D0CE, #1A2980);*/
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+
+}
+.shortpane{
+    /*-fx-background-color: linear-gradient(to right, #26D0CE, #1A2980);*/
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+
+}
+.subpane{
+    -fx-background-color:#000040;
+
+}
+.Dashsuppane1{
+    -fx-background-color: white;
+
+}
+.Btn{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-background-radius: 20;
+
+}
+.Btn:hover{
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+
+.lablerrrr{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 37;
+
+}
+.cusattribute{
+    -fx-text-fill: black;
+}
+.custextfil{
+    -fx-text-fill: black;
+}
+
+.customer{
+    -fx-text-fill: white;
+}
+.cusserfil{
+    -fx-text-fill: red;
+}
+.panecus{
+    -fx-background-color:white;
+
+}
+.custfill{
+    -fx-text-fill: black;
+}
+.Btndelete{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.buslable{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 35;
+}
+.bustextf{
+    -fx-text-fill: black;
+}
+
+.Btncus{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.busdelete{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.pane{
+    -fx-background-color:white ;
+}
+.lablebus{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size:  37;
+}
+.textbus{
+    -fx-text-fill:black ;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+
+}
+.pompbus{
+    -fx-text-fill: red;
+}
+.txtbusfield{
+    -fx-text-fill: black;
+}
+.busbtn{
+    -fx-text-fill: black;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.user{
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+
+
+
+.userBtn{
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+    -fx-text-fill: white;
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+
+.bookingpane4{
+    -fx-background-color:#33383C ;
+}
+.booklable{
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+    -fx-font-size: 37;
+}
+.lable2book{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+
+}
+.bookingtextfield{
+    -fx-text-fill: white;
+}
+
+.bookingBtn{
+    -fx-text-fill: white;
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+.bookingcolourbtn{
+    -fx-background-color: green;
+}
+.bookingexists{
+    -fx-background-color: red;
+}
+.seat{
+    -fx-background-color:#33383C ;
+}
+.seatlable{
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+.seatlableh{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size:  37;
+}
+.seatavailable{
+    -fx-background-color: #2f3542;
+
+}
+.seattcolour{
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+
+}
+.seatseat{
+    -fx-background-color: #F88158;
+}
+
+.seatexit{
+    -fx-text-fill:black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.seatlable4{
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -fx-background-color: green;
+    -fx-font-weight: bold;
+}
+.seatlable5{
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -fx-background-color: red;
+    -fx-font-weight: bold;
+}
+.seatsearch{
+    -fx-text-fill: red;
+}
+.seattextwhite{
+    -fx-text-fill: white;
+}
+.employee{
+    -fx-background-color:white;
+}
+.employeetexwhite{
+    -fx-text-fill:black;
+}
+.emplyeelable{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+}
+.employeesearch{
+    -fx-text-fill: red;
+}
+.employeelablett{
+    -fx-text-fill:black;
+    -fx-font-weight: bold;
+    -fx-font-size:  37;
+}
+.employeeaddex{
+   -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+
+.employeeremove{
+    -fx-text-fill:black;
+    -fx-font-size: 20;
+    -fx-font-weight:bold;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.employeebackcolourex{
+    -fx-background-color: red;
+}
+.drivertbl{
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.Driver{
+    -fx-background-color:white ;
+}
+.driverte{
+    -fx-text-fill: black;
+}
+.driverlable1{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+}
+.driverlable{
+
+    -fx-text-fill: black;
+    -fx-font-size: 37;
+    -fx-font-weight: bold;
+}
+.searchDriver{
+    -fx-text-fill: red;
+}
+.driveradeexbtn{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+    -fx-font-size: 20;
+
+}
+.driverexit{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+    -fx-font-size: 20;
+    -fx-background-radius: 50;
+}
+.servicecenter{
+    -fx-background-color: white;
+}
+.servicecenterremove{
+    -fx-text-fill:black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+
+}
+.servicecenterlable{
+    -fx-text-fill:black;
+    -fx-font-size: 37;
+    -fx-font-weight: bold;
+}
+.Serviceceterlable2{
+    -fx-text-fill: black;
+    -fx-font-size: 17;
+    -fx-font-weight: bold;
+
+}
+.servicecentertextfield{
+    -fx-text-fill:black;
+}
+.Serviceceterlable3{
+    -fx-text-fill: red;
+}
+.Serviceceterpanet{
+    -fx-background-color: white;
+}
+.Servicecetersearch{
+    -fx-text-fill: red;
+}
+.Serviceceteraddbtn{
+    -fx-text-fill:black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.serviceexitbtn{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+}
+.servicedetails{
+    -fx-background-color:#33383C ;
+}
+.sdetaillable{
+    -fx-text-fill: red;
+    -fx-font-size: 37;
+    -fx-font-weight: bold;
+}
+.sdetailstextfield{
+    -fx-text-fill: red;
+}
+.sdetailsbtnex{
+    -fx-text-fill: red;
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+.Payment{
+    -fx-background-color: #33383C;
+}
+.Paymentlabel{
+    -fx-font-weight: bold;
+    -fx-font-size: 37;
+    -fx-text-fill: red;
+}
+.paymentlabel2{
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+    -fx-text-fill: white;
+
+}
+.Paymentsearch{
+    -fx-text-fill: red;
+}
+.paymentaddexbtn{
+    -fx-text-fill: green;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+}
+.paymentexitbtn{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+
+}
+.paymenttexetwhite{
+    -fx-text-fill: white;
+
+}
+.bilfil{
+    -fx-text-fill: white;
+}
+.bill{
+    -fx-background-color: white;
+}
+.billthank{
+    -fx-font-size: 30;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
+.billklablem{
+    -fx-font-weight: bold;
+    -fx-font-size: 37;
+    -fx-text-fill:black;
+}
+.billlable2{
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+    -fx-text-fill: black;
+}
+.billbtnaddex{
+    -fx-text-fill:black;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-background-color: linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.billbtnexit{
+    -fx-text-fill:black;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+}
+.billtextWhite{
+    -fx-text-fill: black;
+}
+.billsearch{
+    -fx-text-fill: red;
+}
+.seatchangecolour{
+    -fx-background-color: white;
+}
+.seatlablelast{
+   -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 40;
+}
+.seatlablef{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+}
+.setBTneexit{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+}
+.Report{
+    -fx-background-color:#33383C ;
+}
+.settextf{
+    -fx-text-fill: black;
+}
+.reportlable{
+    -fx-font-weight: bold;
+    -fx-font-size: 37;
+    -fx-text-fill: red;
+}
+.reportlable2{
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+    -fx-text-fill: white;
+}
+.reportsearch{
+    -fx-text-fill: red;
+}
+.reportbtnaddex{
+    -fx-text-fill: green;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+}
+.reportbtnexit{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 25;
+}
+.reporttextfield{
+    -fx-text-fill: white;
+}
+.login{
+    -fx-background-color: linear-gradient(to right, white, black);
+}
+.loginlable{
+    -fx-text-fill: white;
+    -fx-font-size: 19;
+    -fx-font-weight: bold;
+}
+.logintext{
+  -fx-text-fill:   white;
+}
+.loginbtn{
+    -fx-text-fill: white;
+    -fx-background-color: green;
+    -fx-font-weight: bold;
+    -fx-font-size: 28;
+}
+
+.dashlpane{
+    -fx-background-color:linear-gradient(to right top, #6c5ce7, #8554ed, #9f48f1, #b935f2, #d300f0);
+}
+.bookingBar-button{
+    -fx-background-radius: 10;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #3988E8;
+}.bookingBar-txt{
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+ .bar{
+     -fx-border-radius: 40;
+     -fx-border-color: black;
+     -fx-background-radius: 40;
+ }
+ .bar:hover{
+     -fx-background-color: #E4E7E9;
+ }

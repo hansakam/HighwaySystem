@@ -14,9 +14,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import lk.ijse.bussystem.model.BusModel;
-import lk.ijse.bussystem.model.ScheduleModel;
-import lk.ijse.bussystem.to.Schedule;
+import lk.ijse.bussystem.bo.custom.BusBO;
+import lk.ijse.bussystem.bo.custom.ScheduleBO;
+import lk.ijse.bussystem.bo.custom.impl.BusBOImpl;
+import lk.ijse.bussystem.bo.custom.impl.ScheduleBOImpl;
+import lk.ijse.bussystem.dao.custom.BusDAO;
+import lk.ijse.bussystem.dao.custom.ScheduleDAO;
+import lk.ijse.bussystem.dao.custom.impl.BusDAOImpl;
+import lk.ijse.bussystem.dao.custom.impl.ScheduleDAOImpl;
+import lk.ijse.bussystem.DTO.ScheduleDTO;
 import lk.ijse.bussystem.view.tm.ScheduleTm;
 
 import java.net.URL;
@@ -26,6 +32,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ScheduleController implements Initializable {
+
+    ScheduleBO scheduleBO = new ScheduleBOImpl();
+    BusBO busBO = new BusBOImpl();
+
+
+
     public JFXTextField txtTo;
     public JFXTextField txtSearch;
     public JFXComboBox busId;
@@ -52,7 +64,7 @@ public class ScheduleController implements Initializable {
 
     public void Btnsearch(ActionEvent actionEvent) {
         try {
-            ResultSet set = ScheduleModel.getSrarch(txtSearch.getText());
+            ResultSet set = scheduleBO.getSrarchSchedule(txtSearch.getText());
             if (set.next()) {
                 cmbFrom.setValue(set.getString(3));
                 cmbTo.setValue(set.getString(4));
@@ -63,11 +75,13 @@ public class ScheduleController implements Initializable {
             throwables.printStackTrace();
         }
 
+
+
     }
 
     public void BtnAddonaction(ActionEvent actionEvent) {
         try {
-            if (ScheduleModel.setSchedule(new Schedule(
+            if (scheduleBO.SaveSchedule(new ScheduleDTO(
                     String.valueOf(busId.getValue()),
                     setFrom(),
                     setTo(),
@@ -104,7 +118,7 @@ public class ScheduleController implements Initializable {
     private String getSId() {
 
         try {
-            ResultSet set=ScheduleModel.getIds();
+            ResultSet set=scheduleBO.getIdsSchedule();
             String id=null;
             while (set.next()){
                 id=set.getString(1);
@@ -149,8 +163,8 @@ return "s001";
 
     public void BtnupdateOnaction(ActionEvent actionEvent) {
         try {
-            if (ScheduleModel.updateSchedule(
-                    new Schedule(
+            if (scheduleBO.UpdateSchedule(
+                    new ScheduleDTO(
                             String.valueOf(busId.getValue()),
                             setFrom(),
                             setTo(),
@@ -187,7 +201,7 @@ return "s001";
 
     public void BtndeleteonAction(ActionEvent actionEvent) {
         try {
-            if (ScheduleModel.remove(txtSearch.getText())) {
+            if (scheduleBO.deleteSchedule(txtSearch.getText())) {
                 new Alert(Alert.AlertType.CONFIRMATION, "remove").show();
                 txtSearch.setText("");
                 if (checkBoxTo.isSelected()) {
@@ -248,12 +262,12 @@ return "s001";
         tblTime.setCellValueFactory(new PropertyValueFactory<>("time"));
         tblSchedule.setItems(scheduleTm);
     }
-
+//down get all
     private void setTableData() {
         scheduleTm.clear();
         tblSchedule.getItems().clear();
         try {
-            ResultSet set = ScheduleModel.getAll();
+            ResultSet set =scheduleBO.getallSchedule();
             while (set.next()) {
                 scheduleTm.add(new ScheduleTm(
                         set.getString(1),
@@ -269,11 +283,12 @@ return "s001";
 
     }
 
+//table data
     private void setTableSearchData() {
         scheduleTm.clear();
         tblSchedule.getItems().clear();
         try {
-            ResultSet set = ScheduleModel.getAll(txtSearch.getText());
+            ResultSet set =scheduleBO.getalltableSchedule(txtSearch.getText());//
             while (set.next()) {
                 scheduleTm.add(new ScheduleTm(
                         set.getString(1),
@@ -293,7 +308,7 @@ return "s001";
     private void setBusId() {
         try {
             ArrayList<String> data = new ArrayList<>();
-            ResultSet set = BusModel.getIds();
+            ResultSet set =busBO.getIdsBUS();
             while (set.next()) {
                 data.add(set.getString(1));
             }
@@ -307,7 +322,7 @@ return "s001";
     private void setToLocation() {
         try {
             ArrayList<String> data = new ArrayList<>();
-            ResultSet set = ScheduleModel.getAllToLocation();
+            ResultSet set =scheduleBO.getAllToLocationSchedule();
             while (set.next()) {
                 data.add(set.getString(1));
             }
@@ -321,7 +336,7 @@ return "s001";
     private void setFromLocation() {
         try {
             ArrayList<String> data = new ArrayList<>();
-            ResultSet set = ScheduleModel.getAllFromLocation();
+            ResultSet set =scheduleBO.getAllFromLocationSchedule();
             while (set.next()) {
                 data.add(set.getString(1));
             }
@@ -330,10 +345,11 @@ return "s001";
             throwables.printStackTrace();
         }
     }
-
+//load combo bus id
     public void busIdOnAction(ActionEvent actionEvent) {
+
         try {
-            ResultSet set = BusModel.getBusNumber(String.valueOf(busId.getValue()));
+            ResultSet set =busBO.getBusNumber(String.valueOf(busId.getValue()));
             if (set.next()) {
                 txtBusNumber.setText(set.getString(1));
             }
@@ -343,6 +359,7 @@ return "s001";
     }
 
     public void searchID(KeyEvent keyEvent) {
+
         if (txtSearch.getText().equals("")) {
             setTableData();
 

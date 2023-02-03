@@ -12,13 +12,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.bussystem.bo.custom.EmployeeBO;
+import lk.ijse.bussystem.bo.custom.impl.EmployeeBOImpl;
+import lk.ijse.bussystem.dao.custom.EmployeeDAO;
 import lk.ijse.bussystem.db.DBConnection;
-import lk.ijse.bussystem.model.CustomerModel;
-import lk.ijse.bussystem.model.EmployeeModel;
-import lk.ijse.bussystem.tm.CustomerTM;
+import lk.ijse.bussystem.dao.custom.impl.EmployeeDAOImpl;
 import lk.ijse.bussystem.tm.EmployeeTM;
-import lk.ijse.bussystem.to.Customer;
-import lk.ijse.bussystem.to.Employee;
+import lk.ijse.bussystem.DTO.EmployeeDTO;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -30,6 +30,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmployeeFormController implements Initializable {
+
+    EmployeeBO employeeBO = new EmployeeBOImpl();
 
 
     public JFXTextField Txtempid;
@@ -71,13 +73,13 @@ public class EmployeeFormController implements Initializable {
         double salary= Double.parseDouble(Txtsalary.getText());
         String sid = String.valueOf(combosid.getValue());
 
-       Employee employee=new Employee(id,name,address,email,salary,sid);
-        boolean issave = EmployeeModel.Save(employee);
-//
-//        if(issave){
-//            Alert alert();
-//        }
-
+        EmployeeDTO employee=new EmployeeDTO(id,name,address,email,salary,sid);
+        boolean issave =employeeBO.SaveEmployee(employee);
+       if(issave){
+           new Alert(Alert.AlertType.CONFIRMATION,"Sucess").show();
+       }else {
+           new Alert(Alert.AlertType.WARNING,"Try to Save").show();
+       }
 
         setTable();
 
@@ -91,10 +93,10 @@ public class EmployeeFormController implements Initializable {
         double salary= Double.parseDouble(Txtsalary.getText());
         String sid= String.valueOf(combosid.getValue());
 
-        Employee employee=new Employee(id,name,address,email,salary);
+        EmployeeDTO employee=new EmployeeDTO(id,name,address,email,salary);
         try {
-            boolean isadd=  EmployeeModel.update(employee);
-            if (isadd) {
+            boolean isupdate=employeeBO.UpdateEmployee(employee);
+            if (isupdate) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee Updated!").show();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Something happened!").show();
@@ -107,7 +109,7 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void BtndeleteonAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        boolean isDelete=EmployeeModel.delete(Txtempid.getText());
+        boolean isDelete=employeeBO.deleteEmployee(Txtempid.getText());
 
         if(isDelete){
             new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successful...!").show();
@@ -154,7 +156,7 @@ public class EmployeeFormController implements Initializable {
     private void setTable() {
        Tblemployeeview .getItems().clear();
         try {
-            ResultSet set = EmployeeModel.getAll();
+            ResultSet set =employeeBO.getAllEmployee();
             while (set.next()){
                 EmployeeTMS.add(new EmployeeTM(
                         set.getString(1),
@@ -177,7 +179,7 @@ public class EmployeeFormController implements Initializable {
     public void Btnsearch(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String id = Txtsearch.getText();
         try {
-            Employee employee =EmployeeModel.search(id);
+            EmployeeDTO employee =employeeBO.SearchEmployee(id);
             if (employee != null) {
 
                 fillData(employee);
@@ -188,7 +190,7 @@ public class EmployeeFormController implements Initializable {
 
 
     }
-    public  void fillData(Employee employee){
+    public  void fillData(EmployeeDTO employee){
 
         Txtempid.setText(employee.getEmp_id());
         Txtname.setText(employee.getName());

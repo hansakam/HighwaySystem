@@ -12,9 +12,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.bussystem.model.CustomerModel;
+import lk.ijse.bussystem.bo.custom.CustomerBO;
+import lk.ijse.bussystem.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.bussystem.dao.custom.CustomerDAO;
+import lk.ijse.bussystem.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.bussystem.tm.CustomerTM;
-import lk.ijse.bussystem.to.Customer;
+import lk.ijse.bussystem.DTO.CustomerDTO;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -24,6 +27,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CustomerFormController implements Initializable{
+
+    CustomerBO customerBO = new CustomerBOImpl();
+
 
     public Label lblcustomerwrong;
     public Label lblcustomerwrongname;
@@ -55,7 +61,7 @@ public class CustomerFormController implements Initializable{
 
         String id = txtSearched.getText();
         try {
-            Customer customer = CustomerModel.search(id);
+            CustomerDTO customer = customerBO.SearchCustomer(id);
             if (customer != null) {
 
                 fillData(customer);
@@ -65,7 +71,7 @@ public class CustomerFormController implements Initializable{
         }
 
     }
-    public  void fillData(Customer customer){
+    public  void fillData(CustomerDTO customer){
         System.out.println(customer.getId());
         Txtid.setText(customer.getId());
         Txtname.setText(customer.getName());
@@ -81,8 +87,8 @@ public class CustomerFormController implements Initializable{
         String email=Txtemail.getText();
 
 
-       Customer customer=new Customer(id,name,address,email);
-        boolean isupdate = CustomerModel.Update(customer);
+       CustomerDTO customer=new CustomerDTO(id,name,address,email);
+        boolean isupdate = customerBO.UpdateCustomer(customer);
 
         if (isupdate){
 
@@ -97,7 +103,7 @@ public class CustomerFormController implements Initializable{
 
     public void Deleteonaction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
-        boolean isDelete=CustomerModel.delete(Txtid.getText());
+        boolean isDelete=customerBO.deleteCustomer(Txtid.getText());
 
         if(isDelete){
             new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successful...!").show();
@@ -116,9 +122,9 @@ public class CustomerFormController implements Initializable{
         String address=Txtaddress.getText();
         String email=Txtemail.getText();
 
-        Customer customer=new Customer(id,name,address,email);
+        CustomerDTO customer=new CustomerDTO(id,name,address,email);
         try {
-             boolean isadd=  CustomerModel.Save(customer);
+             boolean isadd=customerBO.SaveCustomer(customer);
             if (isadd) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer Added!").show();
             } else {
@@ -130,33 +136,33 @@ public class CustomerFormController implements Initializable{
             e.printStackTrace();
         }
     }
-    private void nextid(){
-
-        try {
-
-            ResultSet Set = CustomerModel.getLastId();
-            if (Set.next()) {
-                String[] c00 = Set.getString(1).split("C00");
-                int id = Integer.parseInt(c00[1]);
-                id++;
-                Txtid.setText("C00" + id);
-
-
-            } else {
-                Txtid.setText("C001");
-
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void nextid(){
+//
+//        try {
+//
+//            ResultSet Set = CustomerDAOImpl.getLastId();
+//            if (Set.next()) {
+//                String[] c00 = Set.getString(1).split("C00");
+//                int id = Integer.parseInt(c00[1]);
+//                id++;
+//                Txtid.setText("C00" + id);
+//
+//
+//            } else {
+//                Txtid.setText("C001");
+//
+//            }
+//
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void newonaction(ActionEvent actionEvent) {
 
-        nextid();
+        //nextid();
     }
 
     @Override
@@ -168,10 +174,11 @@ public class CustomerFormController implements Initializable{
         setTable();
         setPattern();
     }
+    //table getall
     private void setTable() {
         Tblcus.getItems().clear();
         try {
-            ResultSet set =CustomerModel.getAll();
+            ResultSet set = customerBO.getAllCustomer();
             while (set.next()){
                 customerTMS.add(new CustomerTM(
                         set.getString(1),

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="641.0" prefWidth="1130.0" styleClass="employee" stylesheets="@style/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bussystem.controller.EmployeeFormController">
+   <children>
+      <Label layoutX="90.0" layoutY="194.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Employee Id   :" />
+      <Label layoutX="446.0" layoutY="194.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Name   :" />
+      <Label layoutX="765.0" layoutY="194.0" prefHeight="26.0" prefWidth="97.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Address    :" />
+      <Label layoutX="90.0" layoutY="309.0" prefHeight="26.0" prefWidth="88.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="E mail      :" />
+      <Label layoutX="446.0" layoutY="309.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Salary   :" />
+      <Label layoutX="765.0" layoutY="309.0" styleClass="emplyeelable" stylesheets="@style/Style.css" text="Service Id   :" />
+      <JFXTextField fx:id="Txtempid" layoutX="208.0" layoutY="195.0" onKeyTyped="#Txteid" prefHeight="25.0" prefWidth="206.0" stylesheets="@style/Style.css" />
+      <JFXTextField fx:id="Txtname" layoutX="514.0" layoutY="195.0" onKeyTyped="#Txtename" prefHeight="25.0" prefWidth="206.0" stylesheets="@style/Style.css" />
+      <JFXTextField fx:id="Txtaddress" layoutX="854.0" layoutY="195.0" onKeyTyped="#Txteaddress" prefHeight="25.0" prefWidth="206.0" stylesheets="@style/Style.css" />
+      <JFXTextField fx:id="Txtsalary" layoutX="514.0" layoutY="310.0" prefHeight="25.0" prefWidth="206.0" stylesheets="@style/Style.css" />
+      <JFXTextField fx:id="Txtemail" layoutX="168.0" layoutY="310.0" onKeyTyped="#Txtemail" prefHeight="25.0" prefWidth="252.0" stylesheets="@style/Style.css" />
+      <JFXTextField fx:id="Txtsearch" layoutX="801.0" layoutY="81.0" onAction="#Btnsearch" prefHeight="25.0" prefWidth="252.0" promptText="Search employee Id" styleClass="employeesearch" stylesheets="@style/Style.css" />
+      <Label layoutX="110.0" layoutY="54.0" styleClass="employeelablett" stylesheets="@style/Style.css" text="Employee" />
+      <JFXButton layoutX="901.0" layoutY="388.0" onAction="#BtnAddonaction" style="-fx-background-radius: 10;" stylesheets="@style/Style.css" text="Add">
+         <styleClass>
+            <String fx:value="employeeaddex" />
+            <String fx:value="employeeaddex" />
+            <String />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="628.0" layoutY="388.0" onAction="#BtnupdateOnaction" style="-fx-background-radius: 10;" stylesheets="@style/Style.css" text="Update">
+         <styleClass>
+            <String fx:value="employeeaddex" />
+            <String fx:value="employeeaddex" />
+            <String />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="374.0" layoutY="388.0" onAction="#BtndeleteonAction" style="-fx-background-radius: 10;" styleClass="employeeremove" stylesheets="@style/Style.css" text="Delete" />
+      <JFXComboBox fx:id="combosid" layoutX="862.0" layoutY="310.0" prefHeight="25.0" prefWidth="206.0" unFocusColor="#655858" />
+      <TableView fx:id="Tblemployeeview" layoutX="175.0" layoutY="466.0" prefHeight="113.0" prefWidth="803.0">
+        <columns>
+          <TableColumn fx:id="Tbleid" prefWidth="115.0" text="Employee Id" />
+          <TableColumn fx:id="Tblname" prefWidth="135.99996948242188" text="Name" />
+            <TableColumn fx:id="Tbladdresss" prefWidth="135.99996948242188" text="Address" />
+            <TableColumn fx:id="Tblmail" prefWidth="135.99996948242188" text="E mail" />
+            <TableColumn fx:id="Tblsalary" prefWidth="135.99996948242188" text="Salary" />
+            <TableColumn fx:id="Tblserviceid" prefWidth="135.99996948242188" text="Service Id" />
+        </columns>
+      </TableView>
+      <Label fx:id="lbleid" layoutX="189.0" layoutY="232.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+      <Label fx:id="lblname" layoutX="511.0" layoutY="232.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+      <Label fx:id="lblemail" layoutX="189.0" layoutY="346.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+      <Label fx:id="lbladdress" layoutX="861.0" layoutY="232.0" prefHeight="33.0" prefWidth="235.0" textFill="#e11313" />
+   </children>
+</AnchorPane>

@@ -11,10 +11,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import lk.ijse.bussystem.model.DriverModel;
+import lk.ijse.bussystem.bo.custom.DriverBO;
+import lk.ijse.bussystem.bo.custom.impl.DriverBOImpl;
+import lk.ijse.bussystem.dao.custom.DriverDAO;
+import lk.ijse.bussystem.dao.custom.impl.DriverDAOImpl;
 import lk.ijse.bussystem.tm.DriverTM;
-import lk.ijse.bussystem.to.Customer;
-import lk.ijse.bussystem.to.Driver;
+import lk.ijse.bussystem.DTO.DriverDTO;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -24,6 +26,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DriverFormController implements Initializable {
+
+    DriverBO driverBO = new DriverBOImpl();
+
     public JFXTextField Txtid;
     public JFXTextField Txtname;
     public JFXTextField Txtaddress;
@@ -51,14 +56,14 @@ public class DriverFormController implements Initializable {
     public void btnsearchonaction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String id = Txtsearch.getText();
 
-        Driver driver = DriverModel.Search(id);
+        DriverDTO driver = driverBO.SearchDriver(id);
         if (driver != null) {
             filldata(driver);
         }
 
     }
 
-    public void filldata(Driver driver) {
+    public void filldata(DriverDTO driver) {
         Txtid.setText(driver.getEid());
         Txtname.setText(driver.getName());
         Txtaddress.setText(driver.getAddress());
@@ -75,9 +80,9 @@ public class DriverFormController implements Initializable {
         String email = Txtemail.getText();
         double salary = Double.parseDouble(Txtsalary.getText());
 
-        Driver driver = new Driver(id, name, address, email, salary);
+        DriverDTO driver = new DriverDTO(id, name, address, email, salary);
 
-        boolean isadd = DriverModel.add(driver);
+        boolean isadd =driverBO.SaveDriver(driver);
         if (isadd) {
             new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
         } else {
@@ -92,9 +97,9 @@ public class DriverFormController implements Initializable {
         String email = Txtemail.getText();
         double salary = Double.parseDouble(Txtsalary.getText());
 
-        Driver driver = new Driver(id, name, address, email, salary);
+        DriverDTO driver = new DriverDTO(id, name, address, email, salary);
 
-        boolean isupdate = DriverModel.Update(driver);
+        boolean isupdate =driverBO.UpdateDriver(driver);
         if (isupdate) {
 
             new Alert(Alert.AlertType.CONFIRMATION, "Update success").show();
@@ -108,7 +113,7 @@ public class DriverFormController implements Initializable {
 
     public void Btndelete(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String id = Txtid.getText();
-        boolean isDelete = DriverModel.Delete(id);
+        boolean isDelete =driverBO.deleteDriver(id);
         if (isDelete) {
             new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successful...!").show();
 
@@ -134,7 +139,7 @@ public class DriverFormController implements Initializable {
     private void setTable() {
         tblviewb.getItems().clear();
         try {
-            ResultSet set = DriverModel.getAll();
+            ResultSet set =driverBO.getAllDriver();
             while (set.next()) {
                 DriverTMS.add(new DriverTM(
                         set.getString(1),

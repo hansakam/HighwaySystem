@@ -12,9 +12,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import lk.ijse.bussystem.bo.custom.BusBO;
+import lk.ijse.bussystem.bo.custom.CustomerBO;
+import lk.ijse.bussystem.bo.custom.impl.BusBOImpl;
+import lk.ijse.bussystem.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.bussystem.dao.QueryDAO;
+import lk.ijse.bussystem.dao.custom.*;
+import lk.ijse.bussystem.dao.custom.impl.*;
 import lk.ijse.bussystem.db.DBConnection;
-import lk.ijse.bussystem.model.*;
-import lk.ijse.bussystem.to.Payment;
+import lk.ijse.bussystem.DTO.PaymentDTO;
 import lk.ijse.bussystem.util.CrudUtil;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
@@ -25,6 +31,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,6 +40,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SheatbookingController implements Initializable {
+
+
+
+    CustomerBO customerBO = new CustomerBOImpl();
+    BusBO busBO = new BusBOImpl();
+    SeatBookingDAO seatBookingDAO = new SeatBookingDAOImpl();
+    QueryDAO queryDAO = new QueryDAOImpl();
+    PaymentDAO paymentDAO = new PaymentDAOImpl();
+    SeatDAO seatDAO = new SeatDAOImpl();
 
     public static ArrayList<String> seat = new ArrayList<>();
     public static SheatbookingController controller;
@@ -54,27 +70,9 @@ public class SheatbookingController implements Initializable {
     }
 
     public void cmbbusidonaction(ActionEvent actionEvent) {
-       /* try {
-            if (SeatBookingModel.seatExist(String.valueOf(cmdbusid.getValue()))) {
 
-            } else {
-                ResultSet resultSet= ScheduleModel.getData(String.valueOf(cmdbusid.getValue()));
-                while (resultSet.next()){
-                    ResultSet set = BusModel.getSeatcount(String.valueOf(cmdbusid.getValue()));
-                    if (set.next()) {
-                        SeatBookingModel.setSeat(Integer.parseInt(set.getString(1)), String.valueOf(cmdbusid.getValue()),resultSet.getString(1));
-                    }
-                }
-            }
-            ResultSet set = BusModel.getBusNumber(String.valueOf(cmdbusid.getValue()));
-            if (set.next()) {
-                lblbusnumber.setText(set.getString(1));
-            }
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-        }*/
 try {
-    ResultSet set = BusModel.getBusNumber(String.valueOf(cmdbusid.getValue()));
+    ResultSet set = busBO.getBusNumber(String.valueOf(cmdbusid.getValue()));
     if (set.next()) {
         lblbusnumber.setText(set.getString(1));
     }
@@ -89,8 +87,11 @@ try {
 
         vBox.getChildren().clear();
         try {
+            String from=lblFrom.getText();
+            String to=lblTo.getText();
+            LocalTime tim=time.getValue();
 
-            ResultSet sets= CrudUtil.execute("SELECT Schedule.schedule_id from schedule where `from`=? and `to`=? and time=?",lblFrom.getText(),lblTo.getText(),time.getValue());
+            ResultSet sets= CrudUtil.execute("SELECT Schedule.schedule_id from schedule where `from`=? and `to`=? and time=?",from,to,tim);
             String id=null;
             if (sets.next()){
                 id=sets.getString(1);
@@ -98,7 +99,7 @@ try {
             System.out.println("ID : "+id);
 
 
-            ResultSet set = SeatBookingModel.getAll(id,lblFrom.getText(),lblTo.getText(),time.getValue());
+            ResultSet set = queryDAO.getAll(id,lblFrom.getText(),lblTo.getText(),time.getValue());
             while (set.next()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/bussystem/view/BookingBar.fxml"));
                 Parent root = loader.load();
@@ -117,7 +118,7 @@ try {
     public void Btnpay(ActionEvent actionEvent) {
         String pId=getId();
         try {
-            if (PaymentModel.setPayment(new Payment(
+            if (paymentDAO.setPayment(new PaymentDTO(
                     pId,
                     lblFrom.getText(),
                     lblTo.getText(),
@@ -171,7 +172,7 @@ try {
     private String getId() {
         String id = null;
         try {
-            ResultSet set = PaymentModel.getPaymentIds();
+            ResultSet set = paymentDAO.getPaymentIds();
             while (set.next()) {
                 id = set.getString(1);
             }
@@ -202,7 +203,7 @@ try {
 
     public void cmbcusidonaction(ActionEvent actionEvent) {
         try {
-            ResultSet set = CustomerModel.getName(String.valueOf(cmbcusid.getValue()));
+            ResultSet set =customerBO.getNameCustomer(String.valueOf(cmbcusid.getValue()));
             if (set.next()) {
                 lblcusname.setText(set.getString(1));
             }
@@ -210,11 +211,11 @@ try {
             throwables.printStackTrace();
         }
     }
-
+//combo box
     private void setCustomerId() {
         ArrayList<String> id = new ArrayList<>();
         try {
-            ResultSet set = CustomerModel.getIds();
+            ResultSet set = customerBO.getIdsCustomer();
             while (set.next()) {
                 id.add(set.getString(1));
             }
@@ -229,7 +230,7 @@ try {
     private void setBusId() {
         ArrayList<String> id = new ArrayList<>();
         try {
-            ResultSet set = BusModel.getIds();
+            ResultSet set =busBO.getIdsBUS();
             while (set.next()) {
                 id.add(set.getString(1));
             }
@@ -241,7 +242,7 @@ try {
 
     public void Btnbooking(ActionEvent actionEvent) {
         try {
-            if (SeatBookingModel.updateAll()){
+            if (seatBookingDAO.updateAll()){
                 new Alert(Alert.AlertType.CONFIRMATION,"All Booking cancel").show();
             }
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -295,7 +296,7 @@ try {
 
     private void setBusIdSearch() throws SQLException, ClassNotFoundException {
         System.out.println("on busIdSearch method ");
-        if (SeatModel.schedulExsist(time.getValue(),lblFrom.getText(),lblTo.getText())){
+        if (seatDAO.schedulExsist(time.getValue(),lblFrom.getText(),lblTo.getText())){
             System.out.println("Schedule exists");
 
             ResultSet sets= CrudUtil.execute("SELECT Schedule.schedule_id from schedule where `from`=? and `to`=? and time=?",lblFrom.getText(),lblTo.getText(),time.getValue());
@@ -306,7 +307,7 @@ try {
 
             System.out.println("ID : "+id);
 
-            if(SeatModel.seatExsist(id)){
+            if(seatDAO.seatExsist(id)){
                 System.out.println("Seat exists");
                 ResultSet busId=CrudUtil.execute("SELECT DISTINCT bus_id FROM seat_booking WHERE schedule_id=?",id);
                 if (busId.next()){
@@ -314,18 +315,13 @@ try {
                 }
 
             }else {
-                if (SeatModel.seatadded(time.getValue(),lblFrom.getText(),lblTo.getText())){
+                if (seatDAO.seatadded(time.getValue(),lblFrom.getText(),lblTo.getText())){
                     System.out.println("added");
                 }
             }
-
-
         }else {
             System.out.println("no schedule");
         }
-
-
-
 
     }
 }

@@ -4,13 +4,21 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
-import lk.ijse.bussystem.model.SeatBookingModel;
+import lk.ijse.bussystem.dao.QueryDAO;
+import lk.ijse.bussystem.dao.custom.SeatBookingDAO;
+import lk.ijse.bussystem.dao.custom.impl.QueryDAOImpl;
+import lk.ijse.bussystem.dao.custom.impl.SeatBookingDAOImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BookingBarController {
+
+
+    SeatBookingDAO seatBookingDAO = new SeatBookingDAOImpl();
+    QueryDAO queryDAO = new QueryDAOImpl();
+
     public Text id;
     public Text cheatNo;
     public JFXButton btn;
@@ -19,6 +27,7 @@ public class BookingBarController {
     public static ArrayList<Double> seatPrice=new ArrayList<>();
 
     public void setData(String id, String sNo, String status) {
+
         this.id.setText(id);
         String[] s = id.split("S");
         System.out.println("sNo  "+sNo);
@@ -36,7 +45,7 @@ public class BookingBarController {
 
         try {
             if (btn.getText().equals("CANCEL")) {
-                ResultSet set= SeatBookingModel.getSeatPrice(String.valueOf(SheatbookingController.controller.cmdbusid.getValue()));
+                ResultSet set= queryDAO.getSeatPrice(String.valueOf(SheatbookingController.controller.cmdbusid.getValue()));
                 if (set.next()){
                     seatPrice.remove(Double.parseDouble(set.getString(1)));
                 }
@@ -46,7 +55,7 @@ public class BookingBarController {
                     }
                 }
 
-                if (SeatBookingModel.updateStatus(id.getText(), "Available")) {
+                if (seatBookingDAO .updateStatus(id.getText(), "Available")) {
                     new Alert(Alert.AlertType.CONFIRMATION, "cancel").show();
                     btn.setText("ADD");
                 }
@@ -55,13 +64,14 @@ public class BookingBarController {
             }
             if (btn.getText().equals("ADD")) {
 
-               ResultSet set= SeatBookingModel.getSeatPrice(String.valueOf(SheatbookingController.controller.cmdbusid.getValue()));
+               ResultSet set= queryDAO.getSeatPrice(String.valueOf(SheatbookingController.controller.cmdbusid.getValue()));
                if (set.next()){
                    seatPrice.add(Double.parseDouble(set.getString(1)));
                }
+
                 total();
                 SheatbookingController.seat.add(id.getText());
-                if (SeatBookingModel.updateStatus(id.getText(), "Booked")) {
+                if (seatBookingDAO .updateStatus(id.getText(), "Booked")) {
                     new Alert(Alert.AlertType.CONFIRMATION, "booked").show();
                     btn.setText("CANCEL");
                 }

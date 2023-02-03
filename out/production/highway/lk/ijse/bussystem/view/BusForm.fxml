@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="641.0" prefWidth="1130.0" stylesheets="@style/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.bussystem.controller.BusFormController">
+   <children>
+      <Label layoutX="54.0" layoutY="30.0" prefHeight="51.0" prefWidth="122.0" styleClass="buslable" text="Bus">
+         <stylesheets>
+            <URL value="@style/Style.css" />
+            <URL value="@style/Style.css" />
+         </stylesheets></Label>
+      <Label layoutX="85.0" layoutY="130.0" prefHeight="21.0" prefWidth="79.0" stylesheets="@style/Style.css" text="Bus Id   :   " />
+      <Label layoutX="550.0" layoutY="132.0" stylesheets="@style/Style.css" text="Bus number   :" />
+      <JFXTextField fx:id="Txtbusid" layoutX="143.0" layoutY="129.0" onKeyTyped="#txtbusidonkeytyped" prefHeight="21.0" prefWidth="221.0" styleClass="txtbusfield" stylesheets="@style/Style.css" unFocusColor="#545252" />
+      <JFXTextField fx:id="Txtsearch" layoutX="830.0" layoutY="59.0" onAction="#BtnsearchOnaction" prefHeight="25.0" prefWidth="243.0" promptText="Search bus" styleClass="pompbus" stylesheets="@style/Style.css" unFocusColor="#514f4f" />
+      <TableView fx:id="Tblbusview" layoutX="238.0" layoutY="402.0" prefHeight="165.0" prefWidth="776.0">
+        <columns>
+          <TableColumn fx:id="Tblbusid" prefWidth="158.0" text="Bus Id" />
+            <TableColumn fx:id="Tblcapasity" prefWidth="151.0" text="Capasity" />
+            <TableColumn fx:id="Tblbusnumber" prefWidth="145.0" text="Bus Number" />
+            <TableColumn fx:id="Tblseat" prefWidth="145.0" text="Seat" />
+            <TableColumn fx:id="Tblseatid" prefWidth="145.0" text="Seatid" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="Txtcapasity" layoutX="151.0" layoutY="236.0" prefHeight="25.0" prefWidth="221.0" styleClass="txtbusfield" stylesheets="@style/Style.css" />
+      <Label layoutX="79.0" layoutY="238.0" stylesheets="@style/Style.css" text="Capasity  :" />
+      <JFXTextField fx:id="Txtbusnumber" layoutX="652.0" layoutY="130.0" prefHeight="25.0" prefWidth="221.0" styleClass="txtbusfield" stylesheets="@style/Style.css" text="nn" />
+      <JFXButton layoutX="818.0" layoutY="293.0" onAction="#BtnAddonaction" style="-fx-background-radius: 10;" styleClass="busbtn" stylesheets="@style/Style.css" text="Add" />
+      <JFXButton layoutX="959.0" layoutY="293.0" onAction="#Btnupdate" style="-fx-background-radius: 10;" styleClass="busbtn" stylesheets="@style/Style.css" text="Update" />
+      <JFXButton layoutX="579.0" layoutY="293.0" onAction="#BtnAddtoservice" style="-fx-background-radius: 10;" styleClass="busbtn" stylesheets="@style/Style.css" text="Add to service" />
+      <JFXButton layoutX="112.0" layoutY="301.0" onAction="#Btnremove" style="-fx-background-radius: 10;" styleClass="busdelete" stylesheets="@style/Style.css" text="Remove" />
+      <Label fx:id="lblbusid" layoutX="140.0" layoutY="167.0" prefHeight="34.0" prefWidth="243.0" textFill="#e11313" />
+      <JFXTextField fx:id="Txtbusseatid" layoutX="480.0" layoutY="236.0" onKeyTyped="#txtbusidonkeytyped" prefHeight="21.0" prefWidth="221.0" styleClass="txtbusfield" stylesheets="@style/Style.css" unFocusColor="#545252" />
+      <Label layoutX="430.0" layoutY="238.0" stylesheets="@style/Style.css" text="Seat   :" />
+      <JFXComboBox fx:id="cmbseatid" layoutX="795.0" layoutY="243.0" prefHeight="25.0" prefWidth="243.0" />
+   </children>
+</AnchorPane>

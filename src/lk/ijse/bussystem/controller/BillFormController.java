@@ -4,9 +4,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import lk.ijse.bussystem.model.BillModel;
-import lk.ijse.bussystem.to.Bill;
-import lk.ijse.bussystem.to.Customer;
+import lk.ijse.bussystem.dao.custom.impl.BillDAOImpl;
+import lk.ijse.bussystem.DTO.BillDTO;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -44,14 +43,14 @@ public class BillFormController implements Initializable {
     public void Btnsearchonaction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String id=TxtbillId.getText();
 
-        Bill bill= BillModel.search(id);
+        BillDTO bill= BillDAOImpl.search(id);
         if (bill != null){
             fillData(bill);
         }
 
 
     }
-    public  void fillData(Bill bill){
+    public  void fillData(BillDTO bill){
 
         TxtbillId.setText(bill.getBill_id());
         TxtpaymentId.setText(bill.getPayment_id());
@@ -71,7 +70,5 @@ public class BillFormController implements Initializable {
     private void loadOrderDate() {
         Lbldate.setText(String.valueOf(LocalDate.now()));
     }
-//    private void loadOrderime() {
-//        Lbltime.setText(String.valueOf(Lbltime.now()));
-//    }
+
 }

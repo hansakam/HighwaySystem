@@ -14,13 +14,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import lk.ijse.bussystem.bo.custom.BusBO;
+import lk.ijse.bussystem.bo.custom.impl.BusBOImpl;
+import lk.ijse.bussystem.dao.custom.BusDAO;
 import lk.ijse.bussystem.db.DBConnection;
-import lk.ijse.bussystem.model.BusModel;
-import lk.ijse.bussystem.model.CustomerModel;
+import lk.ijse.bussystem.dao.custom.impl.BusDAOImpl;
 import lk.ijse.bussystem.tm.BusTM;
-import lk.ijse.bussystem.tm.CustomerTM;
-import lk.ijse.bussystem.to.Bus;
-import lk.ijse.bussystem.to.Driver;
+import lk.ijse.bussystem.DTO.BusDTO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +32,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BusFormController implements Initializable {
+
+    BusBO busBO = new BusBOImpl();
+
     public JFXTextField Txtbusid;
     public JFXTextField Txtsearch;
     public JFXTextField Txtbusnumber;
@@ -62,8 +65,8 @@ public class BusFormController implements Initializable {
         String seat=Txtbusseatid.getText();
         String seatid= String.valueOf(cmbseatid.getValue());
 
-        Bus bus=new Bus(id,capasity,busnumber,seat,seatid);
-        boolean isadd = BusModel.Add(bus);
+        BusDTO bus=new BusDTO(id,capasity,busnumber,seat,seatid);
+        boolean isadd =busBO.SaveBUS(bus);
         if(isadd){
            new Alert(Alert.AlertType.CONFIRMATION,"Success").show();
         }
@@ -76,15 +79,17 @@ public class BusFormController implements Initializable {
     }
 
     public void Btnupdate(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+
+
         String id=Txtbusid.getText();
         String capasity=Txtcapasity.getText();
         String busnumber=Txtbusnumber.getText();
         String seat=Txtbusseatid.getText();
         String seatid= String.valueOf(cmbseatid.getValue());
 
-        Bus bus=new Bus(id,capasity,busnumber,seat,seatid);
+        BusDTO bus=new BusDTO(id,capasity,busnumber,seat,seatid);
 
-        boolean isUpdate=BusModel.Update(bus);
+        boolean isUpdate=busBO.UpdateBUS(bus);
         if(isUpdate){
             new Alert(Alert.AlertType.CONFIRMATION,"success").show();
         }else{
@@ -103,14 +108,14 @@ public class BusFormController implements Initializable {
 
     public void BtnsearchOnaction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String sid=Txtsearch.getText();
-       Bus bus=BusModel.Search(sid);
+       BusDTO bus=busBO.SearchBUS(sid);
        if (bus!=null){
            filldata(bus);
        }
 
     }
 
-    public void filldata(Bus bus){
+    public void filldata(BusDTO bus){
         Txtbusid.setText(bus.getId());
         Txtcapasity.setText(bus.getCapasity());
         Txtbusnumber.setText(bus.getBusnumber());
@@ -150,7 +155,7 @@ public class BusFormController implements Initializable {
     private void setTable() {
         Tblbusview.getItems().clear();
         try {
-            ResultSet set = BusModel.getAll();
+            ResultSet set =busBO.getAllBUS();
             while (set.next()){
                 busTMS.add(new BusTM(
                         set.getString(1),
@@ -179,7 +184,7 @@ public class BusFormController implements Initializable {
     }
 
     public void Btnremove(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        boolean isDelete=BusModel.delete(Txtbusid.getText());
+        boolean isDelete=busBO.deleteBUS(Txtbusid.getText());
 
         if(isDelete){
             new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successful...!").show();
