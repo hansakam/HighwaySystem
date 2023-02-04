@@ -32,7 +32,7 @@ public class SeatBOImpl implements SeatBO {
                 if (set.next()){
                     System.out.println(" Schedule id " +set.getString(1));
                     System.out.println(" Bus id " +set.getString(2));
-                    if (seatDAO.setSeat(set.getString(1),set.getString(2))){
+                    if (seatDAO.setSeats(set.getString(1),set.getString(2))){
                         System.out.println("commit");
                         connection.commit();
                         return true;
