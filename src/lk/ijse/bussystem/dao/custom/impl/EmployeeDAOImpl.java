@@ -2,6 +2,7 @@ package lk.ijse.bussystem.dao.custom.impl;
 
 import lk.ijse.bussystem.DTO.EmployeeDTO;
 import lk.ijse.bussystem.dao.custom.EmployeeDAO;
+import lk.ijse.bussystem.entity.EmployeeEntity;
 import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -9,42 +10,43 @@ import java.sql.SQLException;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
-    public boolean Save(EmployeeDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Save(EmployeeEntity employeeEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO Employee VALUES(?,?,?,?,?,?)",
-                dto.getEmp_id(),
-                dto.getName(),
-                dto.getAddress(),
-                dto.getE_mail(),
-                dto.getSalary(),
-                dto.getSid()
+                employeeEntity.getEmp_Id(),
+                employeeEntity.getName(),
+                employeeEntity.getAddress(),
+                employeeEntity.getE_mail(),
+                employeeEntity.getSalary(),
+                employeeEntity.getSalary()
 
         );
     }
 
     @Override
-    public boolean Update(EmployeeDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Update(EmployeeEntity employeeEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("UPDATE Employee SET name=?,address=?,`E-mail`=?,salary=? WHERE Emp_Id=?",
-                dto.getName(),
-                dto.getAddress(),
-                dto.getE_mail(),
-                dto.getSalary(),
-                dto.getEmp_id()
+                employeeEntity.getName(),
+                employeeEntity.getAddress(),
+                employeeEntity.getE_mail(),
+                employeeEntity.getSalary(),
+                employeeEntity.getEmp_Id()
         );
     }
 
     @Override
-    public EmployeeDTO Search(String id) throws SQLException, ClassNotFoundException {
+    public EmployeeEntity Search(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM Employee WHERE Emp_Id=?";
         ResultSet result = CrudUtil.execute(sql,id);
 
         if (result.next()) {
 
-            return new EmployeeDTO(
+            return new EmployeeEntity (
                     result.getString(1),
                     result.getString(2),
                     result.getString(3),
                     result.getString(4),
-                    result.getDouble(5)
+                    result.getDouble(5),
+                    result.getString(6)
 
 
 

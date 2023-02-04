@@ -2,18 +2,17 @@ package lk.ijse.bussystem.dao.custom.impl;
 
 import lk.ijse.bussystem.controller.SheatbookingController;
 import lk.ijse.bussystem.dao.custom.PaymentDAO;
-import lk.ijse.bussystem.db.DBConnection;
-import lk.ijse.bussystem.DTO.OrderDetailsDTO;
+import lk.ijse.bussystem.DTO.PaymentDetailsDTO;
 import lk.ijse.bussystem.DTO.PaymentDTO;
+import lk.ijse.bussystem.entity.PaymentEntity;
 import lk.ijse.bussystem.util.CrudUtil;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PaymentDAOImpl implements PaymentDAO {
 
-    public static boolean Paymentd(OrderDetailsDTO orderDetails) throws SQLException, ClassNotFoundException {
+    public static boolean Paymentd(PaymentDetailsDTO orderDetails) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO Payment VALUES (?,?,?,?,?,?)",
                 orderDetails.getPid(),
                 orderDetails.getFrom(),
@@ -58,17 +57,17 @@ public class PaymentDAOImpl implements PaymentDAO {
 //    }
 
     @Override
-    public boolean Save(PaymentDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Save(PaymentEntity paymentEntity) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean Update(PaymentDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Update(PaymentEntity paymentEntity) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public PaymentDTO Search(String s) throws SQLException, ClassNotFoundException {
+    public PaymentEntity  Search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -78,16 +77,16 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
-    public boolean setPaymentData(PaymentDTO payment) throws SQLException, ClassNotFoundException {
+    public boolean setPaymentData(PaymentEntity paymentEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO payment VALUES (?,?,?,?,?,?,?,?)",
-                payment.getPayment_Id(),
-                payment.getFrom(),
-                payment.getTo(),
-                payment.getAmount(),
-                payment.getBus_Id(),
-                payment.getCustomer_Id(),
-                payment.getDate(),
-                payment.getTime()
+                paymentEntity.getPayment_Id(),
+                paymentEntity.getFrom(),
+                paymentEntity.getTo(),
+                paymentEntity.getAmount(),
+                paymentEntity.getBus_Id(),
+                paymentEntity.getCustomer_Id(),
+                paymentEntity.getDate(),
+                paymentEntity.getTime()
         );
     }
 
@@ -97,12 +96,12 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
-    public boolean setDetais(PaymentDTO payment) throws SQLException, ClassNotFoundException {
+    public boolean setDetais(PaymentEntity paymentEntity) throws SQLException, ClassNotFoundException {
         for (int i = 0; i < SheatbookingController.seat.size(); i++) {
             if (CrudUtil.execute("INSERT INTO payment_details VALUES (?,?,?)",
-                    payment.getPayment_Id(),
+                    paymentEntity.getPayment_Id(),
                     SheatbookingController.seat.get(i),
-                    payment.getBus_Id()
+                    paymentEntity.getBus_Id()
             )) {
             } else {
                 return false;

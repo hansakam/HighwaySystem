@@ -2,6 +2,7 @@ package lk.ijse.bussystem.dao.custom.impl;
 
 import lk.ijse.bussystem.DTO.ScheduleDTO;
 import lk.ijse.bussystem.dao.custom.ScheduleDAO;
+import lk.ijse.bussystem.entity.ScheduleEntity;
 import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -10,29 +11,29 @@ import java.time.LocalTime;
 
 public class ScheduleDAOImpl implements ScheduleDAO {
     @Override
-    public boolean Save(ScheduleDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Save(ScheduleEntity scheduleEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO Schedule VALUES (?,?,?,?,?)",
-                dto.getBusId(),
-                dto.getTime(),
-                dto.getFrom(),
-                dto.getTo(),
-                dto.getS_id()
+                scheduleEntity.getBus_Id(),
+                scheduleEntity.getTime(),
+                scheduleEntity.getFrom(),
+                scheduleEntity.getTo(),
+                scheduleEntity.getSchedule_id()
         );
     }
 
     @Override
-    public boolean Update(ScheduleDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Update(ScheduleEntity scheduleEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("UPDATE Schedule SET time=?,`from`=?,`to`=? WHERE Bus_Id=?",
-                dto.getTime(),
-                dto.getFrom(),
-                dto.getTo(),
-                dto.getBusId()
+                scheduleEntity.getTime(),
+                scheduleEntity.getFrom(),
+                scheduleEntity.getTo(),
+                scheduleEntity.getBus_Id()
 
                 );
     }
 
     @Override
-    public ScheduleDTO Search(String s) throws SQLException, ClassNotFoundException {
+    public ScheduleEntity  Search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 

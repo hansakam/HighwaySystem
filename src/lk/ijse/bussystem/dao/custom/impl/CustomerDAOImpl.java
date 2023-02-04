@@ -2,6 +2,7 @@ package lk.ijse.bussystem.dao.custom.impl;
 
 import lk.ijse.bussystem.DTO.CustomerDTO;
 import lk.ijse.bussystem.dao.custom.CustomerDAO;
+import lk.ijse.bussystem.entity.CustomerEntity;
 import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -10,13 +11,13 @@ import java.sql.SQLException;
 public class CustomerDAOImpl implements CustomerDAO {
 
    @Override
-    public  boolean Save(CustomerDTO customer) throws SQLException, ClassNotFoundException {
+    public  boolean Save(CustomerEntity customerEntity) throws SQLException, ClassNotFoundException {
 
         return CrudUtil.execute("INSERT INTO customer VALUES (?,?,?,?)",
-                customer.getId(),
-                customer.getName(),
-                customer.getAddress(),
-                customer.getEmail()
+                customerEntity.getCustomer_Id(),
+                customerEntity.getName(),
+                customerEntity.getAddress(),
+                customerEntity.getE_mail()
         );
     }
 
@@ -33,24 +34,25 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public  boolean Update(CustomerDTO customer) throws SQLException, ClassNotFoundException {
+    public  boolean Update(CustomerEntity customerEntity) throws SQLException, ClassNotFoundException {
 
         return CrudUtil.execute("UPDATE Customer SET name=?,address=?,`E-mail`=? WHERE Customer_Id=?",
-                customer.getName(),
-                customer.getAddress(),
-                customer.getEmail(),
-                customer.getId());
+                customerEntity.getName(),
+                customerEntity.getAddress(),
+                customerEntity.getE_mail(),
+                customerEntity.getCustomer_Id()
+        );
 
     }
 
     @Override
-    public CustomerDTO Search(String id) throws SQLException, ClassNotFoundException {
+    public CustomerEntity Search(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT  * FROM customer WHERE Customer_Id = ?";
         ResultSet result = CrudUtil.execute(sql, id);
 
         if (result.next()) {
 
-            return new CustomerDTO(
+            return new CustomerEntity(
                     result.getString(1),
                     result.getString(2),
                     result.getString(3),

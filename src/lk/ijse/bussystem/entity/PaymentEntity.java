@@ -7,17 +7,17 @@ package lk.ijse.bussystem.entity;
 import java.sql.Date;
 import java.sql.Time;
 
-public class payment {
+public class PaymentEntity {
     private String Payment_Id;
     private String From;
     private String To;
     private double amount;
     private String Bus_Id;
     private String Customer_Id;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
 
-    public payment(String payment_Id, String from, String to, double amount, String bus_Id, String customer_Id, Date date, Time time) {
+    public PaymentEntity(String payment_Id, String from, String to, double amount, String bus_Id, String customer_Id, String date, String time) {
         this.Payment_Id = payment_Id;
         this.From = from;
         this.To = to;
@@ -76,19 +76,19 @@ public class payment {
         Customer_Id = customer_Id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

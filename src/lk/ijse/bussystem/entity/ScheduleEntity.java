@@ -6,14 +6,14 @@ package lk.ijse.bussystem.entity;
 
 import java.sql.Time;
 
-public class schedule {
+public class ScheduleEntity {
     private String Bus_Id;
-    private Time time;
+    private String time;
     private String from;
     private String to;
     private String schedule_id;
 
-    public schedule(String bus_Id, Time time, String from, String to, String schedule_id) {
+    public ScheduleEntity(String bus_Id, String time, String from, String to, String schedule_id) {
         this.Bus_Id = bus_Id;
         this.time = time;
         this.from = from;
@@ -29,11 +29,11 @@ public class schedule {
         Bus_Id = bus_Id;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

@@ -125,7 +125,7 @@ public class SheatbookingController implements Initializable {
                     pId,
                     lblFrom.getText(),
                     lblTo.getText(),
-                    lbltotal.getText(),
+                    Double.valueOf(lbltotal.getText()),
                     String.valueOf(cmdbusid.getValue()),
                     String.valueOf(cmbcusid.getValue()),
                     getDate(),

@@ -2,6 +2,7 @@ package lk.ijse.bussystem.dao.custom.impl;
 
 import lk.ijse.bussystem.DTO.BusDTO;
 import lk.ijse.bussystem.dao.custom.BusDAO;
+import lk.ijse.bussystem.entity.BusEntity;
 import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -24,41 +25,41 @@ public class BusDAOImpl implements BusDAO {
     }
 
     @Override
-    public boolean Save(BusDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Save(BusEntity busEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO BUS VALUES(?,?,?,?,?)",
-                dto.getId(),
-                dto.getCapasity(),
-                dto.getBusnumber(),
-                dto.getSeatid(),
-                dto.getSeat()
+                busEntity.getBus_Id(),
+                busEntity.getCapasity(),
+                busEntity.getBus_Number(),
+                busEntity.getSeat_id(),
+                busEntity.getSeatCount()
 
         );
     }
 
     @Override
-    public boolean Update(BusDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Update(BusEntity busEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("UPDATE BUS SET Capasity=?, Bus_Number=? WHERE Bus_Id=?",
-                dto.getCapasity(),
-                dto.getBusnumber(),
-                dto.getId(),
-                dto.getSeat(),
-                dto.getSeatid()
+                busEntity.getCapasity(),
+                busEntity.getBus_Number(),
+                busEntity.getSeatCount(),
+                busEntity.getSeat_id(),
+                busEntity.getBus_Id()
                 //update eka error
         );
     }
 
     @Override
-    public BusDTO Search(String id) throws SQLException, ClassNotFoundException {
+    public BusEntity Search(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT  * FROM Bus WHERE  Bus_Id = ?";
         ResultSet result = CrudUtil.execute(sql, id);
         if (result.next()) {
 
-            return new BusDTO(
+            return new BusEntity(
                     result.getString(1),
                     result.getString(2),
                     result.getString(3),
                     result.getString(4),
-                    result.getString(5)
+                    result.getInt(5)
 
 
 

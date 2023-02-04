@@ -1,6 +1,6 @@
 package lk.ijse.bussystem.DTO;
 
-public class OrderDetailsDTO {
+public class PaymentDetailsDTO {
     private String pid;
     private String from;
     private String to;
@@ -10,11 +10,11 @@ public class OrderDetailsDTO {
     private String Seatid;
     private double seatprice;
 
-    public OrderDetailsDTO() {
+    public PaymentDetailsDTO() {
     }
 
-    public OrderDetailsDTO(String pid, String from, String to, double amount, String bid, String cusid,
-                           String seatid, double seatprice) {
+    public PaymentDetailsDTO(String pid, String from, String to, double amount, String bid, String cusid,
+                             String seatid, double seatprice) {
         this.pid = pid;
         this.from = from;
         this.to = to;

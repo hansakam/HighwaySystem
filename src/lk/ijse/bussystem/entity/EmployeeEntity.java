@@ -4,7 +4,7 @@
  */
 package lk.ijse.bussystem.entity;
 
-public class employee {
+public class EmployeeEntity {
     private String Emp_Id;
     private String Name;
     private String Address;
@@ -12,7 +12,7 @@ public class employee {
     private double Salary;
     private String Service_Id;
 
-    public employee(String emp_Id, String name, String address, String e_mail, double salary, String service_Id) {
+    public EmployeeEntity(String emp_Id, String name, String address, String e_mail, double salary, String service_Id) {
         this.Emp_Id = emp_Id;
         this.Name = name;
         this.Address = address;

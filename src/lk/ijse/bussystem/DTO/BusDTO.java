@@ -4,13 +4,13 @@ public class BusDTO {
 private String id;
 private String capasity;
 private String busnumber;
-private String seat;
+private int seat;
 private String seatid;
 
     public BusDTO() {
     }
 
-    public BusDTO(String id, String capasity, String busnumber, String seat, String seatid) {
+    public BusDTO(String id, String capasity, String busnumber, int seat, String seatid) {
         this.id = id;
         this.capasity = capasity;
         this.busnumber = busnumber;
@@ -42,11 +42,11 @@ private String seatid;
         this.busnumber = busnumber;
     }
 
-    public String getSeat() {
+    public int getSeat() {
         return seat;
     }
 
-    public void setSeat(String seat) {
+    public void setSeat(int seat) {
         this.seat = seat;
     }
 

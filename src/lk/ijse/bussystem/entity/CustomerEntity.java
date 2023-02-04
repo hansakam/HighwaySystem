@@ -4,27 +4,25 @@
  */
 package lk.ijse.bussystem.entity;
 
-public class driver {
-    private String Driver_Id;
+public class CustomerEntity {
+   private String Customer_Id;
     private String Name;
     private String Address;
     private String E_mail;
-    private double Salary;
 
-    public driver(String driver_Id, String name, String address, String e_mail, double salary) {
-        this.Driver_Id = driver_Id;
+    public CustomerEntity(String customer_Id, String name, String address, String e_mail) {
+        this.Customer_Id = customer_Id;
         this.Name = name;
         this.Address = address;
         this.E_mail = e_mail;
-        this.Salary = salary;
     }
 
-    public String getDriver_Id() {
-        return Driver_Id;
+    public String getCustomer_Id() {
+        return Customer_Id;
     }
 
-    public void setDriver_Id(String driver_Id) {
-        Driver_Id = driver_Id;
+    public void setCustomer_Id(String customer_Id) {
+        Customer_Id = customer_Id;
     }
 
     public String getName() {
@@ -49,13 +47,5 @@ public class driver {
 
     public void setE_mail(String e_mail) {
         E_mail = e_mail;
-    }
-
-    public double getSalary() {
-        return Salary;
-    }
-
-    public void setSalary(double salary) {
-        Salary = salary;
     }
 }

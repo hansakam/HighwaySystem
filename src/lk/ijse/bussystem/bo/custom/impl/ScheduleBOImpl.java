@@ -10,6 +10,7 @@ import lk.ijse.bussystem.dao.DAOFactory;
 import lk.ijse.bussystem.dao.SuperDAO;
 import lk.ijse.bussystem.dao.custom.ScheduleDAO;
 import lk.ijse.bussystem.dao.custom.impl.ScheduleDAOImpl;
+import lk.ijse.bussystem.entity.ScheduleEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,18 +24,19 @@ public class ScheduleBOImpl implements ScheduleBO {
 
     @Override
     public boolean SaveSchedule(ScheduleDTO dto) throws SQLException, ClassNotFoundException {
-        return scheduleDAO.Save(dto);
+        return scheduleDAO.Save(new ScheduleEntity(dto.getS_id(),dto.getTime(),dto.getFrom(),dto.getTo(),dto.getS_id()));
 
     }
 
     @Override
     public boolean UpdateSchedule(ScheduleDTO dto) throws SQLException, ClassNotFoundException {
-        return scheduleDAO.Update(dto);
+        return scheduleDAO.Update(new ScheduleEntity(dto.getS_id(),dto.getTime(),dto.getFrom(),dto.getTo(),dto.getS_id()));
     }
 
     @Override
     public ScheduleDTO SearchSchedule(String id) throws SQLException, ClassNotFoundException {
-        return scheduleDAO.Search(id);
+        ScheduleEntity search = scheduleDAO.Search(id);
+        return new ScheduleDTO(search.getSchedule_id(),search.getFrom(),search.getTo(),search.getBus_Id(),search.getBus_Id());
     }
 
     @Override

@@ -1,10 +1,13 @@
 package lk.ijse.bussystem.DTO;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class PaymentDTO {
     private String Payment_Id;
     private String From;
     private String To;
-    private String amount;
+    private double amount;
     private String Bus_Id;
     private String Customer_Id;
     private String date;
@@ -13,13 +16,13 @@ public class PaymentDTO {
     public PaymentDTO() {
     }
 
-    public PaymentDTO(String payment_Id, String from, String to, String amount, String bus_Id, String customer_Id, String date, String time) {
-        Payment_Id = payment_Id;
-        From = from;
-        To = to;
+    public PaymentDTO(String payment_Id, String from, String to, double amount, String bus_Id, String customer_Id, String date, String time) {
+        this.Payment_Id = payment_Id;
+        this.From = from;
+        this.To = to;
         this.amount = amount;
-        Bus_Id = bus_Id;
-        Customer_Id = customer_Id;
+        this.Bus_Id = bus_Id;
+        this.Customer_Id = customer_Id;
         this.date = date;
         this.time = time;
     }
@@ -49,11 +52,11 @@ public class PaymentDTO {
         To = to;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

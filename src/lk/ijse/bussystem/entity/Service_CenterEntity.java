@@ -6,16 +6,16 @@ package lk.ijse.bussystem.entity;
 
 import java.sql.Date;
 
-public class service_center {
+public class Service_CenterEntity {
     private String Service_Id;
     private String Name;
     private String Location;
     private String Contact;
     private Double Task_Total_Cost;
-    private Date date;
+    private String date;
     private String Bus_Id;
 
-    public service_center(String service_Id, String name, String location, String contact, Double task_Total_Cost, Date date, String bus_Id) {
+    public Service_CenterEntity(String service_Id, String name, String location, String contact, Double task_Total_Cost, String date, String bus_Id) {
         this.Service_Id = service_Id;
         this.Name = name;
         this.Location = location;
@@ -65,11 +65,11 @@ public class service_center {
         Task_Total_Cost = task_Total_Cost;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

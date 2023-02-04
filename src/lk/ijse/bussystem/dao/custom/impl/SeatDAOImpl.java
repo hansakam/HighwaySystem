@@ -2,11 +2,8 @@ package lk.ijse.bussystem.dao.custom.impl;
 
 import lk.ijse.bussystem.DTO.SeatDTO;
 import lk.ijse.bussystem.dao.custom.SeatDAO;
-import lk.ijse.bussystem.db.DBConnection;
-import lk.ijse.bussystem.DTO.OrderDetailsDTO;
 import lk.ijse.bussystem.util.CrudUtil;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;

@@ -8,6 +8,7 @@ import lk.ijse.bussystem.DTO.ServiceCenterDTO;
 import lk.ijse.bussystem.bo.custom.ServiceCenterBO;
 import lk.ijse.bussystem.dao.custom.ServiceCenterDAO;
 import lk.ijse.bussystem.dao.custom.impl.ServicecenterDAOImpl;
+import lk.ijse.bussystem.entity.Service_CenterEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,17 +19,18 @@ public class ServiceCenterBOImpl implements ServiceCenterBO {
 
     @Override
     public boolean SaveServiceCenter(ServiceCenterDTO dto) throws SQLException, ClassNotFoundException {
-        return servicecenterDAO.Save(dto);
+        return servicecenterDAO.Save(new Service_CenterEntity(dto.getSid(),dto.getName(),dto.getLocation(),dto.getContact(),dto.getTask(),dto.getDate(),dto.getBid()));
     }
 
     @Override
     public boolean UpdateServiceCenter(ServiceCenterDTO dto) throws SQLException, ClassNotFoundException {
-        return servicecenterDAO.Update(dto);
+        return false;
     }
 
     @Override
     public ServiceCenterDTO SearchServiceCenter(String id) throws SQLException, ClassNotFoundException {
-        return servicecenterDAO.Search(id);
+        Service_CenterEntity search = servicecenterDAO.Search(id);
+        return  new ServiceCenterDTO(search.getService_Id(),search.getName(),search.getLocation(),search.getContact(),search.getTask_Total_Cost(),search.getDate(),search.getService_Id());
     }
 
     @Override

@@ -4,14 +4,14 @@
  */
 package lk.ijse.bussystem.entity;
 
-public class bus {
+public class BusEntity {
     private String Bus_Id;
     private String Capasity;
     private String Bus_Number;
     private String seat_id;
     private int seatCount;
 
-    public bus(String bus_Id, String capasity, String bus_Number, String seat_id, int seatCount) {
+    public BusEntity(String bus_Id, String capasity, String bus_Number, String seat_id, int seatCount) {
         this.Bus_Id = bus_Id;
         this.Capasity = capasity;
         this.Bus_Number = bus_Number;

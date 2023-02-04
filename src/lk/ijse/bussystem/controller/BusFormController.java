@@ -68,7 +68,7 @@ public class BusFormController implements Initializable {
         String seat=Txtbusseatid.getText();
         String seatid= String.valueOf(cmbseatid.getValue());
 
-        BusDTO bus=new BusDTO(id,capasity,busnumber,seat,seatid);
+        BusDTO bus=new BusDTO(id,capasity,busnumber,Integer.parseInt(seat),seatid);
         boolean isadd =busBO.SaveBUS(bus);
         if(isadd){
            new Alert(Alert.AlertType.CONFIRMATION,"Success").show();
@@ -87,7 +87,7 @@ public class BusFormController implements Initializable {
         String id=Txtbusid.getText();
         String capasity=Txtcapasity.getText();
         String busnumber=Txtbusnumber.getText();
-        String seat=Txtbusseatid.getText();
+        int seat= Integer.parseInt(Txtbusseatid.getText());
         String seatid= String.valueOf(cmbseatid.getValue());
 
         BusDTO bus=new BusDTO(id,capasity,busnumber,seat,seatid);

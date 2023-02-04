@@ -2,6 +2,7 @@ package lk.ijse.bussystem.dao.custom.impl;
 
 import lk.ijse.bussystem.DTO.ServiceCenterDTO;
 import lk.ijse.bussystem.dao.custom.ServiceCenterDAO;
+import lk.ijse.bussystem.entity.Service_CenterEntity;
 import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -11,31 +12,31 @@ public class ServicecenterDAOImpl implements ServiceCenterDAO {
 
     //updete error
     @Override
-    public boolean Save(ServiceCenterDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Save(Service_CenterEntity service_centerEntity) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO service_center VALUES (?,?,?,?,?,?,?)",
-                dto.getSid(),
-                dto.getName(),
-                dto.getLocation(),
-                dto.getContact(),
-                dto.getTask(),
-                dto.getDate(),
-                dto.getBid()
+                service_centerEntity.getService_Id(),
+                service_centerEntity.getName(),
+                service_centerEntity.getLocation(),
+                service_centerEntity.getContact(),
+                service_centerEntity.getTask_Total_Cost(),
+                service_centerEntity.getDate(),
+                service_centerEntity.getBus_Id()
         );
     }
 
     @Override
-    public boolean Update(ServiceCenterDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean Update(Service_CenterEntity service_centerEntity) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public ServiceCenterDTO Search(String id) throws SQLException, ClassNotFoundException {
+    public Service_CenterEntity Search(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT  * FROM service_center WHERE Service_Id = ?";
         ResultSet result = CrudUtil.execute(sql, id);
 
         if (result.next()) {
 
-            return new ServiceCenterDTO(
+            return new Service_CenterEntity(
                     result.getString(1),
                     result.getString(2),
                     result.getString(3),

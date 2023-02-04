@@ -7,10 +7,8 @@ package lk.ijse.bussystem.bo.custom.impl;
 import lk.ijse.bussystem.DTO.BusDTO;
 import lk.ijse.bussystem.bo.custom.BusBO;
 import lk.ijse.bussystem.dao.DAOFactory;
-import lk.ijse.bussystem.dao.SuperDAO;
 import lk.ijse.bussystem.dao.custom.BusDAO;
-import lk.ijse.bussystem.dao.custom.impl.BusDAOImpl;
-import lk.ijse.bussystem.util.CrudUtil;
+import lk.ijse.bussystem.entity.BusEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,15 +20,16 @@ public class BusBOImpl implements BusBO {
     @Override
     public boolean SaveBUS(BusDTO dto) throws SQLException, ClassNotFoundException {
 
-        return busDAO.Save(dto);
+        return busDAO.Save(new BusEntity(dto.getId(),dto.getCapasity(),dto.getBusnumber(),dto.getSeatid(),dto.getSeat()));
     }
     @Override
     public boolean UpdateBUS(BusDTO dto) throws SQLException, ClassNotFoundException {
-        return busDAO.Update(dto);
+        return busDAO.Update(new BusEntity(dto.getId(),dto.getCapasity(),dto.getBusnumber(),dto.getSeatid(),dto.getSeat()));
     }
     @Override
     public BusDTO SearchBUS(String id) throws SQLException, ClassNotFoundException {
-      return busDAO.Search(id);
+        BusEntity search = busDAO.Search(id);
+        return new BusDTO(search.getBus_Id(),search.getCapasity(),search.getBus_Number(),search.getSeatCount(),search.getSeat_id());
     }
     @Override
     public boolean deleteBUS(String id) throws SQLException, ClassNotFoundException {

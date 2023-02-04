@@ -8,6 +8,7 @@ import lk.ijse.bussystem.DTO.EmployeeDTO;
 import lk.ijse.bussystem.bo.custom.EmployeeBO;
 import lk.ijse.bussystem.dao.custom.EmployeeDAO;
 import lk.ijse.bussystem.dao.custom.impl.EmployeeDAOImpl;
+import lk.ijse.bussystem.entity.EmployeeEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,17 +19,18 @@ public class EmployeeBOImpl implements EmployeeBO {
 
     @Override
     public boolean SaveEmployee(EmployeeDTO dto) throws SQLException, ClassNotFoundException {
-        return employeeDAO.Save(dto);
+        return employeeDAO.Save(new EmployeeEntity(dto.getEmp_id(),dto.getName(),dto.getAddress(),dto.getE_mail(),dto.getSalary(), dto.getSid()));
     }
 
     @Override
     public boolean UpdateEmployee(EmployeeDTO dto) throws SQLException, ClassNotFoundException {
-        return employeeDAO.Update(dto);
+        return employeeDAO.Update(new EmployeeEntity(dto.getEmp_id(),dto.getName(),dto.getAddress(),dto.getE_mail(),dto.getSalary(), dto.getSid()));
     }
 
     @Override
     public EmployeeDTO SearchEmployee(String id) throws SQLException, ClassNotFoundException {
-        return employeeDAO.Search(id);
+        EmployeeEntity search = employeeDAO.Search(id);
+        return new EmployeeDTO(search.getEmp_Id(),search.getName(),search.getAddress(),search.getE_mail(),search.getSalary(),search.getService_Id());
     }
 
     @Override

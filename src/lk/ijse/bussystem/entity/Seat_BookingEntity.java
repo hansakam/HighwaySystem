@@ -4,13 +4,13 @@
  */
 package lk.ijse.bussystem.entity;
 
-public class seat_booking {
+public class Seat_BookingEntity {
     private String booking_seat_id;
     private String bus_id;
     private String status ;
     private String schedule_id;
 
-    public seat_booking(String booking_seat_id, String bus_id, String status, String schedule_id) {
+    public Seat_BookingEntity(String booking_seat_id, String bus_id, String status, String schedule_id) {
         this.booking_seat_id = booking_seat_id;
         this.bus_id = bus_id;
         this.status = status;

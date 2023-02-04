@@ -7,7 +7,7 @@ package lk.ijse.bussystem.entity;
 import java.sql.Time;
 import java.util.Date;
 
-public class bill {
+public class BillEntity {
     private String Bill_Id;
     private String Payment_Id;
     private String Description;
@@ -17,7 +17,7 @@ public class bill {
     private Time Time;
     private String Customer_Id;
 
-    public bill(String bill_Id, String payment_Id, String description, double num_Of_Passenger, double amount_Paid, java.util.Date date, java.sql.Time time, String customer_Id) {
+    public BillEntity(String bill_Id, String payment_Id, String description, double num_Of_Passenger, double amount_Paid, java.util.Date date, java.sql.Time time, String customer_Id) {
         this.Bill_Id = bill_Id;
         this.Payment_Id = payment_Id;
         this.Description = description;

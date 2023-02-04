@@ -4,12 +4,12 @@
  */
 package lk.ijse.bussystem.entity;
 
-public class payment_details {
+public class Payment_DetailsEntity {
     private String Payment_Id;
     private String booking_seat_id;
     private String bus_id;
 
-    public payment_details(String payment_Id, String booking_seat_id, String bus_id) {
+    public Payment_DetailsEntity(String payment_Id, String booking_seat_id, String bus_id) {
         this.Payment_Id = payment_Id;
         this.booking_seat_id = booking_seat_id;
         this.bus_id = bus_id;

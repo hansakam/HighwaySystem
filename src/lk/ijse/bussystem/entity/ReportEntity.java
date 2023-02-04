@@ -4,5 +4,5 @@
  */
 package lk.ijse.bussystem.entity;
 
-public class report {
+public class ReportEntity {
 }

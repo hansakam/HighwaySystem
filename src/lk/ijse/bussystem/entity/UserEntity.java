@@ -4,6 +4,6 @@
  */
 package lk.ijse.bussystem.entity;
 
-public class user {
+public class UserEntity {
 
 }

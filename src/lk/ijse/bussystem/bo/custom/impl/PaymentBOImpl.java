@@ -10,6 +10,7 @@ import lk.ijse.bussystem.dao.DAOFactory;
 import lk.ijse.bussystem.dao.SuperDAO;
 import lk.ijse.bussystem.dao.custom.PaymentDAO;
 import lk.ijse.bussystem.db.DBConnection;
+import lk.ijse.bussystem.entity.PaymentEntity;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,8 +27,8 @@ public class PaymentBOImpl implements PaymentBO {
             try {
                 connection = DBConnection.getInstance().getConnection();
                 connection.setAutoCommit(false);
-                if (paymentDAO.setPaymentData(payment)) {
-                    if (paymentDAO.setDetais(payment)) {
+                if (paymentDAO.setPaymentData(new PaymentEntity(payment.getPayment_Id(),payment.getFrom(),payment.getTo(),payment.getAmount(), payment.getBus_Id(),payment.getCustomer_Id(),payment.getDate(),payment.getTime()))) {
+                    if (paymentDAO.setDetais(new PaymentEntity(payment.getPayment_Id(),payment.getFrom(),payment.getTo(),payment.getAmount(), payment.getBus_Id(),payment.getCustomer_Id(),payment.getDate(),payment.getTime()))) {
                         connection.commit();
                         return true;
                     } else {
