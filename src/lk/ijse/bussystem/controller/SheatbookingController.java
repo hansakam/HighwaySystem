@@ -40,15 +40,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SheatbookingController implements Initializable {
+
     private final SeatBO seatBO = (SeatBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SEAT);
     private final PaymentBO paymentBO = (PaymentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PAYMENT);
     private final BusBO busBO= (BusBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BUS);
     private final CustomerBO customerBO= (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
     private final ScheduleBO scheduleBO = (ScheduleBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SCHEDULE);
     private final SeatBookingBO seatBookingBO= (SeatBookingBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SEATBOOKING);
+    private final QueryBO queryBO = (QueryBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.QUERY);
 
 
-    QueryDAO queryDAO = new QueryDAOImpl();
 
     public static ArrayList<String> seat = new ArrayList<>();
     public static SheatbookingController controller;
@@ -99,7 +100,8 @@ public class SheatbookingController implements Initializable {
             System.out.println("ID : "+id);
 
 
-            ResultSet set = queryDAO.getAll(id,lblFrom.getText(),lblTo.getText(),time.getValue());
+            ResultSet set =queryBO.getAll(id,lblFrom.getText(),lblTo.getText(),time.getValue());
+
             while (set.next()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/bussystem/view/BookingBar.fxml"));
                 Parent root = loader.load();

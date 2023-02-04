@@ -11,7 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.bussystem.bo.custom.BOFactory;
 import lk.ijse.bussystem.bo.custom.DriverBO;
+import lk.ijse.bussystem.bo.custom.SuperBO;
 import lk.ijse.bussystem.bo.custom.impl.DriverBOImpl;
 import lk.ijse.bussystem.dao.custom.DriverDAO;
 import lk.ijse.bussystem.dao.custom.impl.DriverDAOImpl;
@@ -27,7 +29,8 @@ import java.util.regex.Pattern;
 
 public class DriverFormController implements Initializable {
 
-    DriverBO driverBO = new DriverBOImpl();
+
+   DriverBO driverBO= (DriverBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.DRIVER);
 
     public JFXTextField Txtid;
     public JFXTextField Txtname;

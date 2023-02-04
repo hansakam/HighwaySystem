@@ -10,6 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.bussystem.bo.custom.BOFactory;
+import lk.ijse.bussystem.bo.custom.SeatBO;
 import lk.ijse.bussystem.dao.custom.SeatDAO;
 import lk.ijse.bussystem.dao.custom.impl.SeatDAOImpl;
 import lk.ijse.bussystem.view.tm.SeatTm;
@@ -21,7 +23,8 @@ import java.util.ResourceBundle;
 
 public class SeatFormController implements Initializable {
 
-    SeatDAO seatDAO = new SeatDAOImpl();
+
+   private final SeatBO seatBO = (SeatBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SEAT);
 
     public JFXTextField txtPrice;
     public TableView tblView;
@@ -33,7 +36,7 @@ public class SeatFormController implements Initializable {
     public void TxtDid(KeyEvent keyEvent) {
         try {
 
-            ResultSet set= seatDAO.getData(txtId.getText());
+            ResultSet set= seatBO.getData(txtId.getText());
             if (set.next()){
                 txtPrice.setText(set.getString(1));
             }
@@ -44,7 +47,7 @@ public class SeatFormController implements Initializable {
 
     public void Btnadd(ActionEvent actionEvent) {
         try {
-            if (seatDAO.setSeat(txtPrice.getText(), nextId())) {
+            if (seatBO.setSeat(txtPrice.getText(), nextId())) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Ok").show();
                 txtPrice.clear();
                 setTableData();
@@ -58,7 +61,7 @@ public class SeatFormController implements Initializable {
     private Object nextId() {
         String id=null;
         try {
-            ResultSet set = seatDAO.getId();
+            ResultSet set = seatBO.getId();
             while (set.next()){
                 id=set.getString(1);
             }
@@ -78,7 +81,7 @@ public class SeatFormController implements Initializable {
 
     public void Btnupdate(ActionEvent actionEvent) {
         try {
-            if (seatDAO.updateSeat(txtPrice.getText(),txtId.getText())){
+            if (seatBO.updateSeat(txtPrice.getText(),txtId.getText())){
                 new Alert(Alert.AlertType.CONFIRMATION,"Ok").show();
                 txtId.clear();
                 txtPrice.clear();
@@ -103,7 +106,7 @@ public class SeatFormController implements Initializable {
     private void setTableData() {
         tms.clear();
         try {
-            ResultSet set = seatDAO.getAll();
+            ResultSet set =seatBO.getAll();
             while (set.next()) {
                 SeatTm tm = new SeatTm();
                 tm.setId(set.getString(1));

@@ -12,7 +12,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bussystem.bo.custom.BOFactory;
+import lk.ijse.bussystem.bo.custom.BusBO;
 import lk.ijse.bussystem.bo.custom.CustomerBO;
+import lk.ijse.bussystem.bo.custom.SuperBO;
 import lk.ijse.bussystem.bo.custom.impl.CustomerBOImpl;
 import lk.ijse.bussystem.dao.custom.CustomerDAO;
 import lk.ijse.bussystem.dao.custom.impl.CustomerDAOImpl;
@@ -28,7 +31,8 @@ import java.util.regex.Pattern;
 
 public class CustomerFormController implements Initializable{
 
-    CustomerBO customerBO = new CustomerBOImpl();
+
+    CustomerBO customerBO= (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
 
 
     public Label lblcustomerwrong;

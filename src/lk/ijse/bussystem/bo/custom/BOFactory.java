@@ -18,7 +18,7 @@ public class BOFactory {
         return boFactory;
    }
     public enum BOTypes{
-        CUSTOMER,BUS,DRIVER,EMPLOYEE,PAYMENT,SCHEDULE,SEATBOOKING,SEAT,SERVICECENTER
+        CUSTOMER,BUS,DRIVER,EMPLOYEE,PAYMENT,SCHEDULE,SEATBOOKING,SEAT,SERVICECENTER,QUERY
     }
     public SuperBO getBO(BOTypes types){
         switch (types){
@@ -40,6 +40,8 @@ public class BOFactory {
                 return new SeatBOImpl();
             case SERVICECENTER:
                 return new ServiceCenterBOImpl();
+            case QUERY:
+                return new QueryBOImpl();
             default:
                 return null;
 

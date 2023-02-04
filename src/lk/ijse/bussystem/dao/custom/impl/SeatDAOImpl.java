@@ -86,7 +86,6 @@ public class SeatDAOImpl implements SeatDAO {
         }
         return 0;
     }
-
     @Override
     public boolean setSeats(String S_id, String bus_id) throws SQLException, ClassNotFoundException {
         for (int i = 0; i < getSeatCount(bus_id); i++) {

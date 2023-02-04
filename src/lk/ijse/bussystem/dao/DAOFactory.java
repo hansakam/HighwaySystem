@@ -18,7 +18,7 @@ public class DAOFactory {
         return daoFactory;
     }
     public enum DAOTypes{
-        CUSTOMER,BUS,DRIVER,EMPLOYEE,PAYMENT,SCHEDULE,SEATBOOKING,SEAT,SERVICECENTER
+        CUSTOMER,BUS,DRIVER,EMPLOYEE,PAYMENT,SCHEDULE,SEATBOOKING,SEAT,SERVICECENTER,QUERY
     }
     public SuperDAO getDao(DAOTypes types){
         switch(types){
@@ -40,6 +40,8 @@ public class DAOFactory {
                 return new SeatDAOImpl();
             case SERVICECENTER:
                 return new ServicecenterDAOImpl();
+            case QUERY:
+                return new QueryDAOImpl();
             default:
                 return null;
         }

@@ -55,6 +55,31 @@ public class SeatBOImpl implements SeatBO {
         return seatDAO.seatExsist(id);
     }
 
+    @Override
+    public boolean setSeat(String price, Object id) throws SQLException, ClassNotFoundException {
+        return seatDAO.setSeat(price,id);
+    }
+
+    @Override
+    public ResultSet getData(String id) throws SQLException, ClassNotFoundException {
+        return seatDAO.getData(id);
+    }
+
+    @Override
+    public ResultSet getId() throws SQLException, ClassNotFoundException {
+        return seatDAO.getId();
+    }
+
+    @Override
+    public boolean updateSeat(String price, String id) throws SQLException, ClassNotFoundException {
+        return seatDAO.updateSeat(price,id);
+    }
+
+    @Override
+    public ResultSet getAll() throws SQLException, ClassNotFoundException {
+        return seatDAO.getAll();
+    }
+
 
 }
 

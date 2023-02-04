@@ -14,7 +14,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import lk.ijse.bussystem.bo.custom.BOFactory;
 import lk.ijse.bussystem.bo.custom.BusBO;
+import lk.ijse.bussystem.bo.custom.SuperBO;
 import lk.ijse.bussystem.bo.custom.impl.BusBOImpl;
 import lk.ijse.bussystem.dao.custom.BusDAO;
 import lk.ijse.bussystem.db.DBConnection;
@@ -33,7 +35,8 @@ import java.util.regex.Pattern;
 
 public class BusFormController implements Initializable {
 
-    BusBO busBO = new BusBOImpl();
+
+   private final BusBO busBO= (BusBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BUS);
 
     public JFXTextField Txtbusid;
     public JFXTextField Txtsearch;

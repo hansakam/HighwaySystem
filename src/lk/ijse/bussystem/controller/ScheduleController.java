@@ -14,8 +14,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.bussystem.bo.custom.BOFactory;
 import lk.ijse.bussystem.bo.custom.BusBO;
 import lk.ijse.bussystem.bo.custom.ScheduleBO;
+import lk.ijse.bussystem.bo.custom.SuperBO;
 import lk.ijse.bussystem.bo.custom.impl.BusBOImpl;
 import lk.ijse.bussystem.bo.custom.impl.ScheduleBOImpl;
 import lk.ijse.bussystem.dao.custom.BusDAO;
@@ -33,8 +35,9 @@ import java.util.ResourceBundle;
 
 public class ScheduleController implements Initializable {
 
-    ScheduleBO scheduleBO = new ScheduleBOImpl();
-    BusBO busBO = new BusBOImpl();
+
+    private final BusBO busBO= (BusBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BUS);
+    private final ScheduleBO scheduleBO= (ScheduleBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SCHEDULE);
 
 
 

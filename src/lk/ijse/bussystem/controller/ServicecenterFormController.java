@@ -15,7 +15,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import lk.ijse.bussystem.bo.custom.BOFactory;
 import lk.ijse.bussystem.bo.custom.ServiceCenterBO;
+import lk.ijse.bussystem.bo.custom.SuperBO;
 import lk.ijse.bussystem.bo.custom.impl.ServiceCenterBOImpl;
 import lk.ijse.bussystem.dao.custom.ServiceCenterDAO;
 import lk.ijse.bussystem.db.DBConnection;
@@ -34,8 +36,7 @@ import java.util.ResourceBundle;
 
 public class ServicecenterFormController implements Initializable {
 
-    ServiceCenterBO serviceCenterBO = new ServiceCenterBOImpl();
-
+   private final ServiceCenterBO serviceCenterBO= (ServiceCenterBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SERVICECENTER);
 
     public JFXTextField Txtsearch;
     public JFXTextField Txtid;
@@ -67,7 +68,6 @@ ObservableList<ServiceCenterTM>ServicecenterTMS=FXCollections.observableArrayLis
 
             ServiceCenterDTO serviceCenter =serviceCenterBO.SearchServiceCenter(id);
             if (serviceCenter != null) {
-
                 fillData(serviceCenter);
             }
 

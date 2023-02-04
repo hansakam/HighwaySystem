@@ -12,7 +12,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.bussystem.bo.custom.BOFactory;
 import lk.ijse.bussystem.bo.custom.EmployeeBO;
+import lk.ijse.bussystem.bo.custom.SuperBO;
 import lk.ijse.bussystem.bo.custom.impl.EmployeeBOImpl;
 import lk.ijse.bussystem.dao.custom.EmployeeDAO;
 import lk.ijse.bussystem.db.DBConnection;
@@ -31,7 +33,7 @@ import java.util.regex.Pattern;
 
 public class EmployeeFormController implements Initializable {
 
-    EmployeeBO employeeBO = new EmployeeBOImpl();
+   EmployeeBO employeeBO = (EmployeeBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.EMPLOYEE);
 
 
     public JFXTextField Txtempid;
