@@ -10,5 +10,5 @@ public interface PaymentDAO extends CrudDAO<PaymentDTO,String> {
     boolean setPaymentData(PaymentDTO payment) throws SQLException, ClassNotFoundException;
     ResultSet getPaymentIds() throws SQLException, ClassNotFoundException;
     boolean setDetais(PaymentDTO payment) throws SQLException, ClassNotFoundException;
-    boolean setPayment(PaymentDTO paymentDTO) throws SQLException;
+   // boolean setPayment(PaymentDTO paymentDTO) throws SQLException;
 }

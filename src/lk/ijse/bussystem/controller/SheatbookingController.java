@@ -12,10 +12,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import lk.ijse.bussystem.bo.custom.BusBO;
-import lk.ijse.bussystem.bo.custom.CustomerBO;
+import lk.ijse.bussystem.bo.custom.*;
 import lk.ijse.bussystem.bo.custom.impl.BusBOImpl;
 import lk.ijse.bussystem.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.bussystem.bo.custom.impl.SeatBookingBOImpl;
 import lk.ijse.bussystem.dao.QueryDAO;
 import lk.ijse.bussystem.dao.custom.*;
 import lk.ijse.bussystem.dao.custom.impl.*;
@@ -40,15 +40,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SheatbookingController implements Initializable {
+    private final SeatBO seatBO = (SeatBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SEAT);
+    private final PaymentBO paymentBO = (PaymentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PAYMENT);
+    private final BusBO busBO= (BusBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BUS);
+    private final CustomerBO customerBO= (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+    private final ScheduleBO scheduleBO = (ScheduleBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SCHEDULE);
+    private final SeatBookingBO seatBookingBO= (SeatBookingBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SEATBOOKING);
 
 
-
-    CustomerBO customerBO = new CustomerBOImpl();
-    BusBO busBO = new BusBOImpl();
-    SeatBookingDAO seatBookingDAO = new SeatBookingDAOImpl();
     QueryDAO queryDAO = new QueryDAOImpl();
-    PaymentDAO paymentDAO = new PaymentDAOImpl();
-    SeatDAO seatDAO = new SeatDAOImpl();
 
     public static ArrayList<String> seat = new ArrayList<>();
     public static SheatbookingController controller;
@@ -71,7 +71,7 @@ public class SheatbookingController implements Initializable {
 
     public void cmbbusidonaction(ActionEvent actionEvent) {
 
-try {
+        try {
     ResultSet set = busBO.getBusNumber(String.valueOf(cmdbusid.getValue()));
     if (set.next()) {
         lblbusnumber.setText(set.getString(1));
@@ -116,9 +116,10 @@ try {
     }
 
     public void Btnpay(ActionEvent actionEvent) {
+
         String pId=getId();
         try {
-            if (paymentDAO.setPayment(new PaymentDTO(
+            if (paymentBO.setPayment(new PaymentDTO(
                     pId,
                     lblFrom.getText(),
                     lblTo.getText(),
@@ -172,7 +173,7 @@ try {
     private String getId() {
         String id = null;
         try {
-            ResultSet set = paymentDAO.getPaymentIds();
+            ResultSet set =paymentBO.getPaymentIds();
             while (set.next()) {
                 id = set.getString(1);
             }
@@ -241,8 +242,9 @@ try {
     }
 
     public void Btnbooking(ActionEvent actionEvent) {
+
         try {
-            if (seatBookingDAO.updateAll()){
+            if (seatBookingBO.updateAllSeatBooking()){
                 new Alert(Alert.AlertType.CONFIRMATION,"All Booking cancel").show();
             }
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -296,18 +298,18 @@ try {
 
     private void setBusIdSearch() throws SQLException, ClassNotFoundException {
         System.out.println("on busIdSearch method ");
-        if (seatDAO.schedulExsist(time.getValue(),lblFrom.getText(),lblTo.getText())){
+        if (scheduleBO.schedulExsist(time.getValue(),lblFrom.getText(),lblTo.getText())){
             System.out.println("Schedule exists");
 
             ResultSet sets= CrudUtil.execute("SELECT Schedule.schedule_id from schedule where `from`=? and `to`=? and time=?",lblFrom.getText(),lblTo.getText(),time.getValue());
-           String id=null;
+            String id=null;
             if (sets.next()){
                 id=sets.getString(1);
             }
 
             System.out.println("ID : "+id);
 
-            if(seatDAO.seatExsist(id)){
+            if(seatBO.seatExsist(id)){
                 System.out.println("Seat exists");
                 ResultSet busId=CrudUtil.execute("SELECT DISTINCT bus_id FROM seat_booking WHERE schedule_id=?",id);
                 if (busId.next()){
@@ -315,7 +317,8 @@ try {
                 }
 
             }else {
-                if (seatDAO.seatadded(time.getValue(),lblFrom.getText(),lblTo.getText())){
+
+                if (seatBO.seatadded(time.getValue(),lblFrom.getText(),lblTo.getText())){
                     System.out.println("added");
                 }
             }

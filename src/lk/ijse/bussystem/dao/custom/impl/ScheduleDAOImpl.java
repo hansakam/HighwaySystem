@@ -6,6 +6,7 @@ import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public class ScheduleDAOImpl implements ScheduleDAO {
     @Override
@@ -69,6 +70,11 @@ public class ScheduleDAOImpl implements ScheduleDAO {
     public ResultSet getIds() throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("SELECT Schedule.schedule_id from schedule order by length(schedule_id),schedule_id");
     }
+    public boolean schedulExsist(LocalTime time, String from, String to) throws SQLException, ClassNotFoundException {
+        ResultSet set=CrudUtil.execute("SELECT Schedule.schedule_id FROM schedule WHERE time=? AND `to`=? AND  `from`=?",time,to,from);
+        return set.next();
+    }
+
 //    public static ResultSet getAllToLocation() throws SQLException, ClassNotFoundException {
 //        return CrudUtil.execute("SELECT DISTINCT `to` FROM Schedule");
 //    }

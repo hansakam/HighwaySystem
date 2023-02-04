@@ -6,6 +6,7 @@ import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public interface ScheduleDAO extends CrudDAO<ScheduleDTO,String> {
     ResultSet getAllToLocation() throws SQLException, ClassNotFoundException;
@@ -14,4 +15,5 @@ public interface ScheduleDAO extends CrudDAO<ScheduleDTO,String> {
     ResultSet getSrarch(String id) throws SQLException, ClassNotFoundException;
     ResultSet getalltable(String id) throws SQLException, ClassNotFoundException;
     ResultSet getIds() throws SQLException, ClassNotFoundException;
+    boolean schedulExsist(LocalTime time, String from, String to) throws SQLException, ClassNotFoundException;
 }

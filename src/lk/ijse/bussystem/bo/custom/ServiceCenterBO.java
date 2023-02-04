@@ -6,7 +6,7 @@ import lk.ijse.bussystem.util.CrudUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface ServiceCenterBO {
+public interface ServiceCenterBO extends SuperBO{
     boolean SaveServiceCenter(ServiceCenterDTO dto) throws SQLException, ClassNotFoundException;
 
     boolean UpdateServiceCenter(ServiceCenterDTO dto) throws SQLException, ClassNotFoundException;

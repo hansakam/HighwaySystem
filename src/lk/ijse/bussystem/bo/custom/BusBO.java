@@ -5,7 +5,7 @@ import lk.ijse.bussystem.DTO.BusDTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface BusBO {
+public interface BusBO extends SuperBO{
 
     boolean SaveBUS(BusDTO dto) throws SQLException, ClassNotFoundException;
 

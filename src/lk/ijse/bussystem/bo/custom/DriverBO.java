@@ -5,7 +5,7 @@ import lk.ijse.bussystem.DTO.DriverDTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface DriverBO {
+public interface DriverBO extends SuperBO{
 
     boolean SaveDriver(DriverDTO dto) throws SQLException, ClassNotFoundException;
 

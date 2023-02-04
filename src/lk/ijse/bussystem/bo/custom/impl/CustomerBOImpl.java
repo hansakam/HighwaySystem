@@ -6,6 +6,8 @@ package lk.ijse.bussystem.bo.custom.impl;
 
 import lk.ijse.bussystem.DTO.CustomerDTO;
 import lk.ijse.bussystem.bo.custom.CustomerBO;
+import lk.ijse.bussystem.dao.DAOFactory;
+import lk.ijse.bussystem.dao.SuperDAO;
 import lk.ijse.bussystem.dao.custom.CustomerDAO;
 import lk.ijse.bussystem.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.bussystem.util.CrudUtil;
@@ -15,9 +17,11 @@ import java.sql.SQLException;
 
 public class CustomerBOImpl implements CustomerBO {
 
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+    CustomerDAO customerDAO= (CustomerDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.CUSTOMER);
+   // CustomerDAO customerDAO = new CustomerDAOImpl();
     @Override
     public  boolean SaveCustomer(CustomerDTO customer) throws SQLException, ClassNotFoundException {
+
         return customerDAO.Save(customer);
     }
     @Override

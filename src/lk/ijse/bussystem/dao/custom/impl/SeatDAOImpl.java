@@ -13,33 +13,33 @@ import java.time.LocalTime;
 
 public class SeatDAOImpl implements SeatDAO {
 
-    public  boolean seatadded(LocalTime time, String from, String to) throws SQLException {
-        System.out.println("on seat add method");
-        Connection connection=null;
-        try {
-            connection=DBConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
-           ResultSet set= getScgedulData(time,from,to);
-           if (set.next()){
-               System.out.println(" Schedule id " +set.getString(1));
-               System.out.println(" Bus id " +set.getString(2));
-               if (setSeats(set.getString(1),set.getString(2))){
-                   System.out.println("commit");
-                    connection.commit();
-                    return true;
-               }else {
-                   System.out.println("roll back");
-                   connection.rollback();
-               }
-           }
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-        }finally {
-            connection.setAutoCommit(true);
-        }
-        System.out.println("return false ");
-        return false;
-    }
+//    public  boolean seatadded(LocalTime time, String from, String to) throws SQLException {
+//        System.out.println("on seat add method");
+//        Connection connection=null;
+//        try {
+//            connection=DBConnection.getInstance().getConnection();
+//            connection.setAutoCommit(false);
+//           ResultSet set= getScgedulData(time,from,to);
+//           if (set.next()){
+//               System.out.println(" Schedule id " +set.getString(1));
+//               System.out.println(" Bus id " +set.getString(2));
+//               if (setSeats(set.getString(1),set.getString(2))){
+//                   System.out.println("commit");
+//                    connection.commit();
+//                    return true;
+//               }else {
+//                   System.out.println("roll back");
+//                   connection.rollback();
+//               }
+//           }
+//        } catch (SQLException | ClassNotFoundException throwables) {
+//            throwables.printStackTrace();
+//        }finally {
+//            connection.setAutoCommit(true);
+//        }
+//        System.out.println("return false ");
+//        return false;
+//    }
 
     @Override
     public boolean Save(SeatDTO dto) throws SQLException, ClassNotFoundException {
@@ -67,11 +67,11 @@ public class SeatDAOImpl implements SeatDAO {
         return set.next();
     }
 
-    @Override
-    public boolean schedulExsist(LocalTime time, String from, String to) throws SQLException, ClassNotFoundException {
-        ResultSet set=CrudUtil.execute("SELECT Schedule.schedule_id FROM schedule WHERE time=? AND `to`=? AND  `from`=?",time,to,from);
-        return set.next();
-    }
+//    @Override
+//    public boolean schedulExsist(LocalTime time, String from, String to) throws SQLException, ClassNotFoundException {
+//        ResultSet set=CrudUtil.execute("SELECT Schedule.schedule_id FROM schedule WHERE time=? AND `to`=? AND  `from`=?",time,to,from);
+//        return set.next();
+//    }
 
     @Override
     public ResultSet getScgedulData(LocalTime time, String from, String to) throws SQLException, ClassNotFoundException {

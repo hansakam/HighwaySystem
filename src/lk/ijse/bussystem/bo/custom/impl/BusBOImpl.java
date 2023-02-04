@@ -6,6 +6,8 @@ package lk.ijse.bussystem.bo.custom.impl;
 
 import lk.ijse.bussystem.DTO.BusDTO;
 import lk.ijse.bussystem.bo.custom.BusBO;
+import lk.ijse.bussystem.dao.DAOFactory;
+import lk.ijse.bussystem.dao.SuperDAO;
 import lk.ijse.bussystem.dao.custom.BusDAO;
 import lk.ijse.bussystem.dao.custom.impl.BusDAOImpl;
 import lk.ijse.bussystem.util.CrudUtil;
@@ -15,10 +17,12 @@ import java.sql.SQLException;
 
 public class BusBOImpl implements BusBO {
 
-    BusDAO busDAO = new BusDAOImpl();
+    BusDAO busDAO = (BusDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.BUS);
+
     @Override
     public boolean SaveBUS(BusDTO dto) throws SQLException, ClassNotFoundException {
-       return busDAO.Save(dto);
+
+        return busDAO.Save(dto);
     }
     @Override
     public boolean UpdateBUS(BusDTO dto) throws SQLException, ClassNotFoundException {

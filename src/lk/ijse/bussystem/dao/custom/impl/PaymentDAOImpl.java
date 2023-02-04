@@ -34,28 +34,28 @@ public class PaymentDAOImpl implements PaymentDAO {
     /**
      * Transaction
      */
-    public  boolean setPayment(PaymentDTO payment) throws SQLException {
-        Connection connection = null;
-        try {
-            connection = DBConnection.getInstance().getConnection();
-            connection.setAutoCommit(false);
-            if (setPaymentData(payment)) {
-                if (setDetais(payment)) {
-                    connection.commit();
-                    return true;
-                } else {
-                    connection.rollback();
-                }
-            } else {
-                connection.rollback();
-            }
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-        } finally {
-            connection.setAutoCommit(true);
-        }
-        return false;
-    }
+//    public  boolean setPayment(PaymentDTO payment) throws SQLException {
+//        Connection connection = null;
+//        try {
+//            connection = DBConnection.getInstance().getConnection();
+//            connection.setAutoCommit(false);
+//            if (setPaymentData(payment)) {
+//                if (setDetais(payment)) {
+//                    connection.commit();
+//                    return true;
+//                } else {
+//                    connection.rollback();
+//                }
+//            } else {
+//                connection.rollback();
+//            }
+//        } catch (SQLException | ClassNotFoundException throwables) {
+//            throwables.printStackTrace();
+//        } finally {
+//            connection.setAutoCommit(true);
+//        }
+//        return false;
+//    }
 
     @Override
     public boolean Save(PaymentDTO dto) throws SQLException, ClassNotFoundException {

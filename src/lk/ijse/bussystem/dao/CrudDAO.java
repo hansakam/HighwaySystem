@@ -2,7 +2,7 @@ package lk.ijse.bussystem.dao;
 
 import java.sql.SQLException;
 
-public interface CrudDAO<T,id> {
+public interface CrudDAO<T,id> extends SuperDAO{
     boolean Save(T dto) throws SQLException, ClassNotFoundException;
     boolean Update(T dto) throws SQLException, ClassNotFoundException;
     T Search(id id)throws SQLException,ClassNotFoundException;

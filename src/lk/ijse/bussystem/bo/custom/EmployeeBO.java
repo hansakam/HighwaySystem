@@ -6,7 +6,7 @@ import lk.ijse.bussystem.util.CrudUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface EmployeeBO {
+public interface EmployeeBO extends SuperBO{
      boolean SaveEmployee(EmployeeDTO dto) throws SQLException, ClassNotFoundException;
      boolean UpdateEmployee(EmployeeDTO dto) throws SQLException, ClassNotFoundException;
      EmployeeDTO SearchEmployee(String id) throws SQLException, ClassNotFoundException;

@@ -5,8 +5,9 @@ import lk.ijse.bussystem.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
-public interface ScheduleBO {
+public interface ScheduleBO extends SuperBO{
     public boolean SaveSchedule(ScheduleDTO dto) throws SQLException, ClassNotFoundException;
 
     public boolean UpdateSchedule(ScheduleDTO dto) throws SQLException, ClassNotFoundException;
@@ -26,4 +27,6 @@ public interface ScheduleBO {
     public ResultSet getalltableSchedule(String id) throws SQLException, ClassNotFoundException;
 
     public ResultSet getIdsSchedule() throws SQLException, ClassNotFoundException;
+
+    boolean schedulExsist(LocalTime time, String from, String to) throws SQLException, ClassNotFoundException;
 }

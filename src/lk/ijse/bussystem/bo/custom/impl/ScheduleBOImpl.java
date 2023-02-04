@@ -6,19 +6,25 @@ package lk.ijse.bussystem.bo.custom.impl;
 
 import lk.ijse.bussystem.DTO.ScheduleDTO;
 import lk.ijse.bussystem.bo.custom.ScheduleBO;
+import lk.ijse.bussystem.dao.DAOFactory;
+import lk.ijse.bussystem.dao.SuperDAO;
 import lk.ijse.bussystem.dao.custom.ScheduleDAO;
 import lk.ijse.bussystem.dao.custom.impl.ScheduleDAOImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public class ScheduleBOImpl implements ScheduleBO {
 
-    ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+    //  ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+
+    private final ScheduleDAO scheduleDAO = (ScheduleDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.SCHEDULE);
 
     @Override
     public boolean SaveSchedule(ScheduleDTO dto) throws SQLException, ClassNotFoundException {
         return scheduleDAO.Save(dto);
+
     }
 
     @Override
@@ -65,4 +71,11 @@ public class ScheduleBOImpl implements ScheduleBO {
     public ResultSet getIdsSchedule() throws SQLException, ClassNotFoundException {
         return scheduleDAO.getIds();
     }
+
+    @Override
+    public boolean schedulExsist(LocalTime time, String from, String to) throws SQLException, ClassNotFoundException {
+        return scheduleDAO.schedulExsist(time,from,to);
+
+    }
+
 }

@@ -6,7 +6,7 @@ import lk.ijse.bussystem.util.CrudUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface CustomerBO {
+public interface CustomerBO extends SuperBO {
     boolean SaveCustomer(CustomerDTO customer) throws SQLException, ClassNotFoundException;
     boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException;
     boolean UpdateCustomer(CustomerDTO customer) throws SQLException, ClassNotFoundException;
